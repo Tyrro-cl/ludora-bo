@@ -2,6 +2,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/atoms/Button/Button';
+import CallToAction from '../../components/atoms/CallToAction/CallToAction';
 import SideDropMenu from '../../components/organisms/SideDropMenu/SideDropMenu';
 import axiosInstance from '../../services/authService';
 import './HomePage.css';
@@ -131,12 +132,9 @@ const HomePage = () => {
           <section className="home-activity-section">
             <div className="home-activity-header">
               <h2 className="home-activity-title">Activités récentes</h2>
-              <Button variant="primary" size="small" onClick={() => navigate('/activities')}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M8 0C7.4 0 7 0.4 7 1V7H1C0.4 7 0 7.4 0 8C0 8.6 0.4 9 1 9H7V15C7 15.6 7.4 16 8 16C8.6 16 9 15.6 9 15V9H15C15.6 9 16 8.6 16 8C16 7.4 15.6 7 15 7H9V1C9 0.4 8.6 0 8 0Z"/>
-                </svg>
+              <CallToAction variant="primary" onClick={() => navigate('/activities')}>
                 Voir toutes les activités
-              </Button>
+              </CallToAction>
             </div>
             <p className="home-activity-subtitle">
               Gérez vos activités et suivez les progrès de vos élèves
