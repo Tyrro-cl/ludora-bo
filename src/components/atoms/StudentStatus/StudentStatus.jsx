@@ -5,6 +5,8 @@ const StudentStatus = ({
   content = 'Placeholder Text',
   breakpoint = '1920',
   variant = 'Primary',
+  iconName = 'circleCheckBig',
+  slots = {},
   className = ''
 }) => {
   // Determine icon size based on breakpoint
@@ -17,15 +19,21 @@ const StudentStatus = ({
     ${className}
   `.trim().replace(/\s+/g, ' ');
 
+  const iconSlot = slots.icon ?? (
+    <Icon 
+      name={iconName}
+      size={iconSize}
+      color="var(--color-badge-on-track)"
+      className="student-status-icon"
+    />
+  );
+
+  const textSlot = slots.text ?? content;
+
   const iconContainer = (
     <div className={`student-status-icon-container student-status-icon-${breakpoint}`}>
       <div className="student-status-icon-mask">
-        <Icon 
-          name="circleCheckBig" 
-          size={iconSize}
-          color="var(--color-badge-on-track)"
-          className="student-status-icon"
-        />
+        {iconSlot}
       </div>
       <div className="student-status-icon-color" />
     </div>
@@ -33,7 +41,7 @@ const StudentStatus = ({
 
   const textElement = (
     <p className={`student-status-text student-status-text-${variant.toLowerCase()}`}>
-      {content}
+      {textSlot}
     </p>
   );
 

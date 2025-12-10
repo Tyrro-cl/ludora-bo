@@ -1,7 +1,7 @@
 .icon {
   display: inline-flex;
   align-items: center;
-  justify-center;
+  justify-content: center;
   flex-shrink: 0;
   border-radius: 8px;
   overflow: hidden;
