@@ -7,6 +7,10 @@ const SideDropMenu = ({
   title = 'Activités',
   items = [],
   isOpen = false,
+  leadingIcon = 'activities',
+  toggleIconExpanded = 'chevronDown',
+  toggleIconCollapsed = 'plus',
+  slots = {},
   onToggle,
   className = ''
 }) => {
@@ -28,14 +32,16 @@ const SideDropMenu = ({
         aria-expanded={isExpanded}
       >
         <div className="side-drop-menu-header-content">
-          <Icon name="activities" size={24} />
-          <span className="side-drop-menu-title">{title}</span>
+          {slots.headerIcon ?? <Icon name={leadingIcon} size={24} />}
+          <span className="side-drop-menu-title">{slots.title ?? title}</span>
         </div>
-        <Icon 
-          name={isExpanded ? 'chevronDown' : 'plus'} 
-          size={24}
-          className={`side-drop-menu-toggle-icon ${isExpanded ? 'expanded' : ''}`}
-        />
+        {slots.toggleIcon ?? (
+          <Icon 
+            name={isExpanded ? toggleIconExpanded : toggleIconCollapsed} 
+            size={24}
+            className={`side-drop-menu-toggle-icon ${isExpanded ? 'expanded' : ''}`}
+          />
+        )}
       </button>
       
       {isExpanded && (
