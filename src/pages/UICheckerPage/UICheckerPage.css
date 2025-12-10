@@ -1,0 +1,142 @@
+.ui-checker-page {
+  min-height: 100vh;
+  background: var(--color-background, #f9fafb);
+  padding: 2rem;
+}
+
+.ui-checker-header {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.ui-checker-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-strong, #1f2937);
+  margin-bottom: 0.5rem;
+}
+
+.ui-checker-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-weak, #6b7280);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ui-checker-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.component-section {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-text-strong, #1f2937);
+  margin-bottom: 0.5rem;
+}
+
+.section-description {
+  font-size: 1rem;
+  color: var(--color-text-weak, #6b7280);
+  margin-bottom: 1.5rem;
+}
+
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.component-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.component-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-primary, #6366f1);
+  transform: translateY(-2px);
+}
+
+.component-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.component-card-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-strong, #1f2937);
+  margin: 0;
+}
+
+.component-card-category {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-primary, #6366f1);
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.component-card-description {
+  font-size: 0.875rem;
+  color: var(--color-text-weak, #6b7280);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.component-card-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--color-background, #f9fafb);
+  border-radius: 6px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.component-preview-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.login-form-preview {
+  width: 100%;
+  max-width: 300px;
+}
+
+.preview-placeholder {
+  color: var(--color-text-weak, #6b7280);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .ui-checker-page {
+    padding: 1rem;
+  }
+
+  .ui-checker-title {
+    font-size: 2rem;
+  }
+
+  .component-grid {
+    grid-template-columns: 1fr;
+  }
+}
