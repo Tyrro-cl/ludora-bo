@@ -21,6 +21,19 @@ In development, they must correspond directly to layout primitives such as:
   - responsive instructions (if noted)
 - Do not flatten or merge containers when their layout properties influence the final UI.
 
+### 1.3 Icon Rules
+
+#### 1.3.1 Figma Icon layer work context
+- In Figma, due to technical constraints, the following was done:
+  - The main component `Icon` setted as autolayout with hug properties for its width and height, uses a workaround for resizing when it is instanced (due to this being impossible to do with native Figma features): 
+    - `containerA` is in absolute position with (Left & Right) horizontal constraints and (Top & Bottom) for vertical constraints
+      - `color` rectangle is absolute positioned above `iconMask` with (Left & Right) horizontal constraints and (Top & Bottom) for vertical constraints
+      - `iconMask` which is a frame with a alpha masktype, contains `slot1` which is setted as an `Instance swap` property, so all icons can be swapped inside through this methodology, avoiding multiple size declinations
+    - `Sizer` component instance is positioned, which is composed by two invisible autolayouts (width%) and (height%) setted to hug, containing two invisible rectangles. Autolayouts 'gap' property allows to resizing via this feature, acting as a workaround.
+
+#### 1.3.2 How to interpret this into code
+- In order to correctly match the icons from the lucid-dev library that was used in mockups, check the icon slot `masterComponent.name` to retrieve the naming.
+  - The naming can be named as the following `li:square-chevron-right`. Transform this to `SquareChevronRight`, suppresing dashs so it can be correctly used with the React library. Ensure this for all icons tasks
 ---
 
 ## 2. Mapping Figma Slots to Code
@@ -30,15 +43,15 @@ Slots in Figma represent **content placeholders**—areas where text, icons, or 
 
 ### 2.2 Mapping Rules
 - A Figma slot is interpreted as a **named prop** or **children** in code.
-- Slot names should match Figma’s naming (e.g., `label`, `leadingIcon`, `trailingAction`, `subtitle`).
+- Slot names should match Figma’s naming (e.g., `slot1`, `slot2`, `slot3`, `slotX`).
 - In code, slots map to:
   - `children`
-  - `props.<slot>`
+  - `<slot>.props` such as ```slot2.text``` 
   - sub-components for slot regions when needed
 
 **Example:**
 ```tsx
-<Button <div className="containerA"> slot1-icon ={<IconPlus />} slot2-text ="Create" </div>/>
+<Button <div className="containerA"> slot1.icon ={<IconPlus />} slot2.text ="Create" </div>/>
 
 
 ```
