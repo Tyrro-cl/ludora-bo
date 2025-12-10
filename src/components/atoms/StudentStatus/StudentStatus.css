@@ -1,0 +1,120 @@
+.student-status {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.student-status-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  isolation: isolate;
+  flex-shrink: 0;
+}
+
+/* Icon Container */
+.student-status-icon-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  flex-shrink: 0;
+  z-index: 3;
+}
+
+.student-status-icon-mask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+.student-status-icon-color {
+  position: absolute;
+  background-color: var(--color-badge-on-track);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Breakpoint-specific icon sizes */
+.student-status-icon-1920,
+.student-status-icon-768 {
+  width: 24px;
+  height: 24px;
+}
+
+.student-status-icon-320 {
+  width: 16px;
+  height: 16px;
+}
+
+.student-status-320 .student-status-icon-color {
+  width: 16px;
+  height: 16px;
+}
+
+.student-status-1920 .student-status-icon-color,
+.student-status-768 .student-status-icon-color {
+  width: 24px;
+  height: 24px;
+}
+
+/* Primary Variant */
+.student-status-primary .student-status-background {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-badge-on-track-bg);
+  border: 1px solid var(--color-badge-on-track-stroke);
+  border-radius: var(--radius-sm);
+  z-index: 1;
+}
+
+.student-status-text-primary {
+  font-family: var(--font-complementary);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-badge-on-track);
+  font-size: var(--text-size-3);
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+/* Secondary Variant */
+.student-status-secondary .student-status-text {
+  position: relative;
+  z-index: 2;
+}
+
+.student-status-text-secondary {
+  font-family: var(--font-complementary);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-badge-on-track);
+  font-size: var(--text-size-3);
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+/* Text element */
+.student-status-text {
+  position: relative;
+  flex-shrink: 0;
+}
+
