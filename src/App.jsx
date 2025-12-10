@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { Icon  } from 'lucide-react';
 import PrivateRoute from './components/PrivateRoute';
 import LoginPage from './pages/LoginPage/LoginPage';
 import TeacherLoginPage from './pages/TeacherLoginPage/TeacherLoginPage';
