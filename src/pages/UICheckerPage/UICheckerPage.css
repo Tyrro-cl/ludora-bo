@@ -1,6 +1,7 @@
 .ui-checker-page {
   min-height: 100vh;
-  background: var(--color-background, #f9fafb);
+  background: var(--color-bg, #201a25);
+  color: var(--color-text, #e5e7eb);
   padding: 2rem;
 }
 
@@ -13,13 +14,13 @@
 .ui-checker-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--color-text-strong, #1f2937);
+  color: var(--color-text-on-dark-100, #fbfbfe);
   margin-bottom: 0.5rem;
 }
 
 .ui-checker-subtitle {
   font-size: 1.125rem;
-  color: var(--color-text-weak, #6b7280);
+  color: var(--color-text-muted, #cbd5e1);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -36,13 +37,13 @@
 .section-title {
   font-size: 1.75rem;
   font-weight: 600;
-  color: var(--color-text-strong, #1f2937);
+  color: var(--color-text-on-dark-100, #fbfbfe);
   margin-bottom: 0.5rem;
 }
 
 .section-description {
   font-size: 1rem;
-  color: var(--color-text-weak, #6b7280);
+  color: var(--color-text-on-dark-60, #cbd5e1);
   margin-bottom: 1.5rem;
 }
 
@@ -53,18 +54,18 @@
 }
 
 .component-card {
-  background: white;
-  border-radius: 8px;
+  background: var(--color-surface, #2a272d);
+  border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-1, 0 1px 3px rgba(0, 0, 0, 0.4));
   cursor: pointer;
   transition: all 0.2s ease;
-  border: 2px solid transparent;
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
 }
 
 .component-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-color: var(--color-primary, #6366f1);
+  box-shadow: var(--shadow-2, 0 4px 12px rgba(0, 0, 0, 0.45));
+  border-color: var(--color-interaction-neutral-stroke-selected, rgba(46, 44, 116, 0.6));
   transform: translateY(-2px);
 }
 
@@ -78,15 +79,15 @@
 .component-card-name {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--color-text-strong, #1f2937);
+  color: var(--color-text-on-dark-100, #fbfbfe);
   margin: 0;
 }
 
 .component-card-category {
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-primary, #6366f1);
-  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-text-on-dark-100, #fbfbfe);
+  background: var(--color-brand-primary-30, rgba(46, 44, 116, 0.3));
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   text-transform: uppercase;
@@ -94,7 +95,7 @@
 
 .component-card-description {
   font-size: 0.875rem;
-  color: var(--color-text-weak, #6b7280);
+  color: var(--color-text-on-dark-60, #cbd5e1);
   margin-bottom: 1rem;
   line-height: 1.5;
 }
@@ -102,12 +103,13 @@
 .component-card-preview {
   margin-top: 1rem;
   padding: 1rem;
-  background: var(--color-background, #f9fafb);
-  border-radius: 6px;
+  background: var(--color-surface-soft, rgba(255, 255, 255, 0.03));
+  border-radius: 10px;
   min-height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid var(--color-border-soft, rgba(255, 255, 255, 0.08));
 }
 
 .component-preview-wrapper {
@@ -123,7 +125,7 @@
 }
 
 .preview-placeholder {
-  color: var(--color-text-weak, #6b7280);
+  color: var(--color-text-muted, #cbd5e1);
   font-size: 0.875rem;
 }
 
