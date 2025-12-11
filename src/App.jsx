@@ -6,6 +6,8 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import TeacherLoginPage from './pages/TeacherLoginPage/TeacherLoginPage';
 import HomePage from './pages/HomePage/HomePage';
 import ActivitiesPage from './pages/ActivitiesPage/ActivitiesPage';
+import UICheckerPage from './pages/UICheckerPage/UICheckerPage';
+import ComponentDetailPage from './pages/ComponentDetailPage/ComponentDetailPage';
 import './App.css';
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
               </PrivateRoute>
             } 
           />
+          <Route path="/ui-checker" element={<UICheckerPage />} />
+          <Route path="/ui-checker/:componentId" element={<ComponentDetailPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
