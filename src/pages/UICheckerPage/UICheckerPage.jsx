@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-import { componentLibrary } from '../../utils/componentLibrary';
-import './UICheckerPage.css';
+import { useNavigate } from "react-router-dom";
+import { componentLibrary } from "../../utils/componentLibrary";
+import "./UICheckerPage.css";
 
 const UICheckerPage = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const UICheckerPage = () => {
 
   const ComponentCard = ({ component }) => {
     return (
-      <div 
+      <div
         className="component-card"
         onClick={() => handleComponentClick(component.id)}
       >
@@ -22,41 +22,45 @@ const UICheckerPage = () => {
         <p className="component-card-description">{component.description}</p>
         <div className="component-card-preview">
           <div className="component-preview-wrapper">
-            {component.id === 'ludoraLogo' ? (
+            {component.id === "ludoraLogo" ? (
               <component.component />
-            ) : component.id === 'icon' ? (
+            ) : component.id === "icon" ? (
               <component.component name="circle" size={24} />
-            ) : component.id === 'counter' ? (
+            ) : component.id === "counter" ? (
               <component.component count={5} />
-            ) : component.id === 'label' ? (
+            ) : component.id === "label" ? (
               <component.component>Label</component.component>
-            ) : component.id === 'input' ? (
+            ) : component.id === "input" ? (
               <component.component placeholder="Preview" />
-            ) : component.id === 'button' ? (
+            ) : component.id === "button" ? (
               <component.component>Preview</component.component>
-            ) : component.id === 'callToAction' ? (
+            ) : component.id === "callToAction" ? (
               <component.component>Preview</component.component>
-            ) : component.id === 'studentStatus' ? (
+            ) : component.id === "studentStatus" ? (
               <component.component content="Preview" />
-            ) : component.id === 'statusRoot' ? (
+            ) : component.id === "statusRoot" ? (
               <component.component content="Preview" />
-            ) : component.id === 'formField' ? (
+            ) : component.id === "formField" ? (
               <component.component label="Preview" name="preview" placeholder="Preview" />
-            ) : component.id === 'sidebarMenuItem' ? (
+            ) : component.id === "sidebarMenuItem" ? (
               <component.component label="Preview" />
-            ) : component.id === 'roleCard' ? (
+            ) : component.id === "roleCard" ? (
               <component.component title="Preview" />
-            ) : component.id === 'loginForm' ? (
+            ) : component.id === "loginForm" ? (
               <div className="login-form-preview">
                 <component.component onSubmit={() => {}} />
               </div>
-            ) : component.id === 'sideDropMenu' ? (
-              <component.component 
-                title="Preview" 
+            ) : component.id === "sideDropMenu" ? (
+              <component.component
+                title="Preview"
                 items={[
-                  { id: '1', label: 'Item 1', icon: 'circle', isSelected: false }
+                  { id: "1", label: "Item 1", icon: "circle", isSelected: false }
                 ]}
               />
+            ) : component.id === "sideNav" ? (
+              <div className="side-nav-preview">
+                <component.component state="expanded" />
+              </div>
             ) : (
               <div className="preview-placeholder">Preview</div>
             )}
