@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Button from '../../components/atoms/Button/Button';
-import SideDropMenu from '../../components/organisms/SideDropMenu/SideDropMenu';
+import DashboardLayout from '../../components/organisms/DashboardLayout/DashboardLayout';
 import axiosInstance from '../../services/authService';
 import './ActivitiesPage.css';
 
@@ -88,70 +88,17 @@ const ActivitiesPage = () => {
 
   if (loading) {
     return (
-      <div className="activities-page">
+      <DashboardLayout user={user} onLogout={logout}>
         <div className="activities-loading">
           <p>Chargement...</p>
         </div>
-      </div>
+      </DashboardLayout>
     );
   }
 
   return (
-    <div className="activities-page">
-      <div className="activities-sidebar">
-        <SideDropMenu
-          title="Activités"
-          items={activitiesMenuItems}
-          isOpen={true}
-        />
-        
-        <div className="activities-themes-list">
-          <h3 className="activities-themes-title">Filtrer par thème</h3>
-          {themes.map(theme => (
-            <button
-              key={theme.id}
-              className={`activities-theme-item ${selectedTheme === theme.id ? 'activities-theme-item--active' : ''}`}
-              onClick={() => handleThemeClick(theme.id)}
-            >
-              <span className="activities-theme-name">{theme.name}</span>
-              <span className="activities-theme-count">
-                {activities.filter(a => a.themeId === theme.id).length}
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <main className="activities-main">
-        <header className="activities-header">
-          <div className="activities-header-left">
-            <button 
-              className="activities-back-button"
-              onClick={() => navigate('/home')}
-            >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"/>
-              </svg>
-              Retour au tableau de bord
-            </button>
-            <h1 className="activities-header-title">Activités pédagogiques</h1>
-            <div className="activities-breadcrumb">
-              <span>École de Gratte Ciel #0711</span>
-              <span className="activities-breadcrumb-separator">›</span>
-              <span>Activités</span>
-            </div>
-          </div>
-          <div className="activities-header-right">
-            <span className="activities-header-user">
-              {user?.personalInfo?.firstName || user?.email}
-            </span>
-            <Button onClick={logout} variant="secondary" size="small">
-              Déconnexion
-            </Button>
-          </div>
-        </header>
-
-        <div className="activities-content">
+    <DashboardLayout user={user} onLogout={logout}>
+      <div className="activities-page">
           <div className="activities-toolbar">
             <div className="activities-toolbar-left">
               <h2 className="activities-section-title">
@@ -219,8 +166,7 @@ const ActivitiesPage = () => {
             </div>
           )}
         </div>
-      </main>
-    </div>
+    </DashboardLayout>
   );
 };
 

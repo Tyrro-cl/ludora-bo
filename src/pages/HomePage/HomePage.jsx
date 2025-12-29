@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/atoms/Button/Button';
 import CallToAction from '../../components/atoms/CallToAction/CallToAction';
-import SideDropMenu from '../../components/organisms/SideDropMenu/SideDropMenu';
+import DashboardLayout from '../../components/organisms/DashboardLayout/DashboardLayout';
 import axiosInstance from '../../services/authService';
 import './HomePage.css';
 
@@ -92,42 +92,17 @@ const HomePage = () => {
 
   if (loading) {
     return (
-      <div className="home-page">
+      <DashboardLayout user={user} onLogout={logout}>
         <div className="home-loading">
           <p>Chargement...</p>
         </div>
-      </div>
+      </DashboardLayout>
     );
   }
 
   return (
-    <div className="home-page">
-      <div className="home-sidebar">
-        <SideDropMenu
-          title="Activités"
-          items={activitiesMenuItems}
-          isOpen={true}
-        />
-      </div>
-
-      <main className="home-main">
-        <header className="home-header">
-          <div className="home-header-left">
-            <h1 className="home-header-title">Tableau de bord</h1>
-            <div className="home-breadcrumb">
-              <span>École de Gratte Ciel #0711</span>
-            </div>
-          </div>
-          <div className="home-header-right">
-            <span className="home-header-user">
-              {user?.personalInfo?.firstName || user?.email}
-            </span>
-            <Button onClick={logout} variant="secondary" size="small">
-              Déconnexion
-            </Button>
-          </div>
-        </header>
-
+    <DashboardLayout user={user} onLogout={logout}>
+      <div className="home-page">
         <div className="home-content">
           <section className="home-activity-section">
             <div className="home-activity-header">
@@ -222,8 +197,8 @@ const HomePage = () => {
             </div>
           </section>
         </div>
-      </main>
-    </div>
+      </div>
+    </DashboardLayout>
   );
 };
 
