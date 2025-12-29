@@ -96,9 +96,15 @@ const DashboardLayout = ({ children, user, onLogout }) => {
 
   // Transform user object to match SideNav expectations
   const sideNavUser = user ? {
-    name: user.name || user.email || 'Utilisateur',
-    role: user.role || 'Enseignant',
-    avatarUrl: user.avatarUrl || 'https://www.figma.com/api/mcp/asset/2100ba69-46ca-402e-9833-407695ebd713'
+    name: user.personalInfo?.firstName 
+      ? String(user.personalInfo.firstName) 
+      : user.email 
+        ? String(user.email).split('@')[0]
+        : 'Utilisateur',
+    role: user.role?.name 
+      ? String(user.role.name)
+      : 'Enseignant',
+    avatarUrl: user.personalInfo?.image || 'https://www.figma.com/api/mcp/asset/2100ba69-46ca-402e-9833-407695ebd713'
   } : {
     name: 'Utilisateur',
     role: 'Enseignant',

@@ -41,7 +41,11 @@ const TopNav = ({ user, onLogout, onNotifications }) => {
               aria-label="User menu"
             >
               <span className="top-nav-user-name">
-                {user?.personalInfo?.firstName || user?.email?.split('@')[0] || 'Utilisateur'}
+                {user?.personalInfo?.firstName 
+                  ? String(user.personalInfo.firstName)
+                  : user?.email 
+                    ? String(user.email).split('@')[0]
+                    : 'Utilisateur'}
               </span>
               <Icon name={isUserMenuOpen ? 'chevronUp' : 'chevronDown'} size={16} />
             </button>
