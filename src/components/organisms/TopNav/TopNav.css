@@ -1,176 +1,176 @@
 .top-nav {
-  background: var(--color-surface, #2a272d);
-  border-bottom: 1px solid var(--color-border-soft, rgba(255, 255, 255, 0.08));
-  padding: 0;
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  box-shadow: var(--shadow-1, 0 1px 3px rgba(0, 0, 0, 0.1));
+    background: var(--color-surface, #2a272d);
+    border-bottom: 1px solid var(--color-border-soft, rgba(255, 255, 255, 0.08));
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    box-shadow: var(--shadow-1, 0 1px 3px rgba(0, 0, 0, 0.1));
 }
 
 .top-nav-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  height: 60px;
-  max-width: 100%;
-  margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    height: 60px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .top-nav-left {
-  flex: 1;
+    flex: 1;
 }
 
 .top-nav-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-text-on-dark-100, #fbfbfe);
-  margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-on-dark-100, #fbfbfe);
+    margin: 0;
 }
 
 .top-nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .top-nav-icon-button {
-  background: none;
-  border: none;
-  color: var(--color-text-on-dark-60, #cbd5e1);
-  cursor: pointer;
-  position: relative;
-  padding: 0.5rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
+    background: none;
+    border: none;
+    color: var(--color-text-on-dark-60, #cbd5e1);
+    cursor: pointer;
+    position: relative;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
 }
 
 .top-nav-icon-button:hover {
-  background: var(--color-brand-primary-30, rgba(46, 44, 116, 0.2));
-  color: var(--color-text-on-dark-100, #fbfbfe);
+    background: var(--color-brand-primary-30, rgba(46, 44, 116, 0.2));
+    color: var(--color-text-on-dark-100, #fbfbfe);
 }
 
 .top-nav-notification-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: var(--color-feedback-danger, #ef4444);
-  color: white;
-  font-size: 0.625rem;
-  font-weight: 600;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--color-feedback-danger, #ef4444);
+    color: white;
+    font-size: 0.625rem;
+    font-weight: 600;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .top-nav-divider {
-  width: 1px;
-  height: 24px;
-  background: var(--color-border-soft, rgba(255, 255, 255, 0.08));
+    width: 1px;
+    height: 24px;
+    background: var(--color-border-soft, rgba(255, 255, 255, 0.08));
 }
 
 .top-nav-user-section {
-  position: relative;
+    position: relative;
 }
 
 .top-nav-user-button {
-  background: none;
-  border: none;
-  color: var(--color-text-on-dark-100, #fbfbfe);
-  cursor: pointer;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
-  font-size: 0.875rem;
-  font-weight: 500;
+    background: none;
+    border: none;
+    color: var(--color-text-on-dark-100, #fbfbfe);
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 
 .top-nav-user-button:hover {
-  background: var(--color-brand-primary-30, rgba(46, 44, 116, 0.2));
+    background: var(--color-brand-primary-30, rgba(46, 44, 116, 0.2));
 }
 
 .top-nav-user-name {
-  max-width: 120px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .top-nav-user-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 0.5rem;
-  background: var(--color-surface, #2a272d);
-  border: 1px solid var(--color-border-soft, rgba(255, 255, 255, 0.08));
-  border-radius: 12px;
-  min-width: 200px;
-  box-shadow: var(--shadow-2, 0 4px 12px rgba(0, 0, 0, 0.2));
-  overflow: hidden;
-  z-index: 50;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: var(--color-surface, #2a272d);
+    border: 1px solid var(--color-border-soft, rgba(255, 255, 255, 0.08));
+    border-radius: 12px;
+    min-width: 200px;
+    box-shadow: var(--shadow-2, 0 4px 12px rgba(0, 0, 0, 0.2));
+    overflow: hidden;
+    z-index: 50;
 }
 
 .top-nav-menu-item {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background: none;
-  border: none;
-  color: var(--color-text-on-dark-100, #fbfbfe);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-  text-align: left;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    color: var(--color-text-on-dark-100, #fbfbfe);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    text-align: left;
 }
 
 .top-nav-menu-item:hover {
-  background: var(--color-brand-primary-30, rgba(46, 44, 116, 0.2));
+    background: var(--color-brand-primary-30, rgba(46, 44, 116, 0.2));
 }
 
 .top-nav-menu-item--danger {
-  color: var(--color-feedback-danger, #ef4444);
+    color: var(--color-feedback-danger, #ef4444);
 }
 
 .top-nav-menu-item--danger:hover {
-  background: rgba(239, 68, 68, 0.1);
+    background: rgba(239, 68, 68, 0.1);
 }
 
 .top-nav-menu-divider {
-  height: 1px;
-  background: var(--color-border-soft, rgba(255, 255, 255, 0.08));
-  margin: 0.5rem 0;
+    height: 1px;
+    background: var(--color-border-soft, rgba(255, 255, 255, 0.08));
+    margin: 0.5rem 0;
 }
 
 @media (max-width: 768px) {
-  .top-nav-content {
-    padding: 1rem;
-    height: 56px;
-  }
+    .top-nav-content {
+        padding: 1rem;
+        height: 56px;
+    }
 
-  .top-nav-title {
-    font-size: 1.25rem;
-  }
+    .top-nav-title {
+        font-size: 1.25rem;
+    }
 
-  .top-nav-right {
-    gap: 1rem;
-  }
+    .top-nav-right {
+        gap: 1rem;
+    }
 
-  .top-nav-user-name {
-    display: none;
-  }
+    .top-nav-user-name {
+        display: none;
+    }
 
-  .top-nav-user-button {
-    padding: 0.25rem;
-  }
+    .top-nav-user-button {
+        padding: 0.25rem;
+    }
 }
