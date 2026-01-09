@@ -1,0 +1,43 @@
+.filter-pill {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+.filter-pill__content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    padding: 0 8px 0 4px;
+    background-color: rgba(251, 251, 254, 0.3);
+    border: 1px solid var(--color-brand-cloud-60);
+    border-radius: 5.333px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-pill__content:hover {
+    background-color: rgba(251, 251, 254, 0.4);
+    border-color: var(--color-brand-cloud-50);
+}
+
+.filter-pill__label {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--color-brand-cloud-60);
+    user-select: none;
+}
+
+.filter-pill__icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand-cloud-50);
+}

@@ -1,0 +1,419 @@
+.notes-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    padding: 40px;
+}
+
+.notes-page__container {
+    max-width: 1248px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Header Section */
+.notes-page__header {
+    background-color: var(--color-bg-dark-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.notes-page__header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+}
+
+.notes-page__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.notes-page__title {
+    font-family: 'Brevia', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+    color: var(--color-brand-tertiary-80);
+    margin: 0;
+}
+
+.notes-page__actions {
+    display: flex;
+    gap: 10px;
+    padding: 4px 0;
+}
+
+.notes-page__action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid rgba(46, 44, 116, 0.3);
+    border-radius: 4px;
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26.4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: inset 0px -1px 1.4px 0px rgba(113, 113, 113, 0.2);
+}
+
+.notes-page__action-btn--export {
+    background-color: #2a272d;
+    color: #fbfbfe;
+}
+
+.notes-page__action-btn--create {
+    background-color: rgba(46, 44, 116, 0.8);
+    color: #fbfbfe;
+}
+
+.notes-page__action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.notes-page__action-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Filter Section */
+.notes-page__filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.notes-page__tabs-container {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.notes-page__tabs-separator {
+    position: absolute;
+    top: 33px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--color-brand-cloud-50);
+    border-radius: 4px;
+}
+
+.notes-page__tab {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.notes-page__tab-content {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 27px;
+    padding: 0 2px 0 0;
+    border-radius: 5.333px;
+}
+
+.notes-page__tab-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notes-page__tab-label {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: right;
+    color: var(--color-brand-cloud-50);
+}
+
+.notes-page__tab--active .notes-page__tab-label {
+    color: var(--color-brand-alternate);
+}
+
+.notes-page__tab-indicator {
+    height: 4px;
+    border-radius: 4px;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.notes-page__tab--active .notes-page__tab-indicator {
+    background-color: var(--color-brand-alternate);
+}
+
+/* Filter Pills */
+.notes-page__filter-pills {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.notes-page__filter-pill {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+.notes-page__filter-pill-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    padding: 0 8px 0 4px;
+    background-color: rgba(251, 251, 254, 0.3);
+    border: 1px solid var(--color-brand-cloud-60);
+    border-radius: 5.333px;
+}
+
+.notes-page__filter-pill-label {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--color-brand-cloud-60);
+}
+
+.notes-page__filter-pill-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Separator */
+.notes-page__separator {
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-brand-cloud-60);
+    border-radius: 4px;
+}
+
+/* Table Section */
+.notes-page__table-container {
+    background-color: transparent;
+}
+
+.notes-table {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.50fr) minmax(0, 1fr) minmax(0, 0.50fr) minmax(0, 0.75fr) minmax(0, 0.25fr);
+    grid-auto-rows: fit-content;
+    gap: 16px;
+    padding: 0 24px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table Row Styles */
+.notes-table__cell {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    min-height: 56px;
+}
+
+.notes-table__cell--odd {
+    background-color: var(--color-bg-dark-light);
+    border-top: 1px solid #201a25;
+    border-bottom: 1px solid #201a25;
+}
+
+.notes-table__cell--even {
+    background-color: var(--color-bg-dark-dark);
+}
+
+.notes-table__cell--centered {
+    justify-content: center;
+}
+
+/* Student Info Cell */
+.notes-table__student {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notes-table__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--color-brand-alternate);
+    box-shadow: 0px 3.5px 5.5px 0px rgba(0, 0, 0, 0.02);
+    flex-shrink: 0;
+}
+
+.notes-table__avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notes-table__student-name {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--color-brand-tertiary-100);
+}
+
+/* Class Cell */
+.notes-table__class {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--color-brand-tertiary-100);
+}
+
+/* Activity Cell */
+.notes-table__activity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.notes-table__activity-text {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.4;
+    color: rgba(251, 251, 254, 0.6);
+}
+
+.notes-table__activity-separator {
+    color: rgba(251, 251, 254, 1);
+}
+
+/* Score Cell */
+.notes-table__score {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.notes-table__score--good {
+    color: var(--color-utility-increase);
+}
+
+.notes-table__score--warning {
+    color: var(--color-utility-warning);
+}
+
+.notes-table__score--caution {
+    color: var(--color-utility-caution);
+}
+
+/* Status Cell */
+.notes-table__status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.notes-table__status--success {
+    background-color: rgba(72, 187, 120, 0.3);
+    border: 1px solid rgba(181, 227, 200, 0.3);
+}
+
+.notes-table__status--support {
+    background-color: rgba(255, 136, 68, 0.3);
+    border: 1px solid rgba(255, 136, 68, 0.3);
+}
+
+.notes-table__status--progress {
+    background-color: rgba(151, 71, 255, 0.3);
+    border: 1px solid rgba(151, 71, 255, 0.3);
+}
+
+.notes-table__status--risk {
+    background-color: rgba(229, 62, 62, 0.3);
+    border: 1px solid rgba(229, 62, 62, 0.3);
+}
+
+.notes-table__status-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.notes-table__status-text {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.notes-table__status--success .notes-table__status-text {
+    color: #48bb78;
+}
+
+.notes-table__status--support .notes-table__status-text {
+    color: #ffa347;
+}
+
+.notes-table__status--progress .notes-table__status-text {
+    color: #9747ff;
+}
+
+.notes-table__status--risk .notes-table__status-text {
+    color: #e53e3e;
+}
+
+/* Action Cell */
+.notes-table__action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.notes-table__action-icon {
+    width: 24px;
+    height: 24px;
+    color: #fbfbfe;
+}
+
+.notes-table__action-btn:hover .notes-table__action-icon {
+    opacity: 0.8;
+}

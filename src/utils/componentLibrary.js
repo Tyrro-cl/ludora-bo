@@ -10,12 +10,20 @@ import CallToAction from "../components/atoms/CallToAction/CallToAction";
 import StudentStatus from "../components/atoms/StudentStatus/StudentStatus";
 import StatusRoot from "../components/atoms/StatusRoot/StatusRoot";
 import LudoraLogo from "../components/atoms/LudoraLogo/LudoraLogo";
+import FilterPill from "../components/atoms/FilterPill/FilterPill";
+import TabItem from "../components/atoms/TabItem/TabItem";
 import FormField from "../components/molecules/FormField/FormField";
 import RoleCard from "../components/molecules/RoleCard/RoleCard";
 import SidebarMenuItem from "../components/molecules/SidebarMenuItem/SidebarMenuItem";
+import StudentInfo from "../components/molecules/StudentInfo/StudentInfo";
+import ActivityBreadcrumb from "../components/molecules/ActivityBreadcrumb/ActivityBreadcrumb";
+import ScoreBadge from "../components/molecules/ScoreBadge/ScoreBadge";
 import LoginForm from "../components/organisms/LoginForm/LoginForm";
 import SideDropMenu from "../components/organisms/SideDropMenu/SideDropMenu";
 import SideNav from "../components/organisms/SideNav/SideNav";
+import NotesTableRow from "../components/organisms/NotesTableRow/NotesTableRow";
+import NotesFilterBar from "../components/organisms/NotesFilterBar/NotesFilterBar";
+import NotesPage from "../pages/NotesPage/NotesPage";
 
 export const componentLibrary = {
     atoms: [
@@ -256,6 +264,50 @@ export const componentLibrary = {
             description: "Ludora brand logo component",
             props: {},
         },
+        {
+            id: "filterPill",
+            name: "FilterPill",
+            category: "atoms",
+            component: FilterPill,
+            description: "Dropdown filter button with chevron icon",
+            props: {
+                label: {
+                    type: "string",
+                    default: "Filter",
+                    examples: ["Filter", "Classe(s)", "Type d'activités", "Diagnostic"],
+                },
+                onClick: {
+                    type: "function",
+                    default: () => console.log("Filter clicked"),
+                },
+            },
+        },
+        {
+            id: "tabItem",
+            name: "TabItem",
+            category: "atoms",
+            component: TabItem,
+            description: "Navigation tab item with active state indicator",
+            props: {
+                label: {
+                    type: "string",
+                    default: "Tab",
+                    examples: ["Tab", "Toutes les notes", "Calculées", "A faire", "En attente"],
+                },
+                active: {
+                    type: "boolean",
+                    default: false,
+                },
+                showIcon: {
+                    type: "boolean",
+                    default: false,
+                },
+                onClick: {
+                    type: "function",
+                    default: () => console.log("Tab clicked"),
+                },
+            },
+        },
     ],
     molecules: [
         {
@@ -343,6 +395,78 @@ export const componentLibrary = {
                 isSelected: { type: "boolean", default: false },
                 isHover: { type: "boolean", default: false },
                 hasIcon: { type: "boolean", default: true },
+            },
+        },
+        {
+            id: "studentInfo",
+            name: "StudentInfo",
+            category: "molecules",
+            component: StudentInfo,
+            description: "Student avatar and name display component",
+            props: {
+                name: {
+                    type: "string",
+                    default: "Student Name",
+                    examples: ["Alice Dupont", "Thomas Martin", "Sophie Bernard"],
+                },
+                avatar: {
+                    type: "string",
+                    default: "👤",
+                    examples: ["👤", "👨", "👩", "🧑"],
+                },
+                avatarUrl: {
+                    type: "string",
+                    default: "",
+                    examples: ["", "https://i.pravatar.cc/150?img=1"],
+                },
+            },
+        },
+        {
+            id: "activityBreadcrumb",
+            name: "ActivityBreadcrumb",
+            category: "molecules",
+            component: ActivityBreadcrumb,
+            description: "Breadcrumb navigation for activities",
+            props: {
+                items: {
+                    type: "array",
+                    default: ["Addition et Soustraction", "Se présenter", "3+..."],
+                    examples: [
+                        ["Math", "Lesson 1"],
+                        ["Addition et Soustraction", "Se présenter", "3+..."],
+                    ],
+                },
+                separator: {
+                    type: "string",
+                    default: " / ",
+                    examples: [" / ", " > ", " → "],
+                },
+            },
+        },
+        {
+            id: "scoreBadge",
+            name: "ScoreBadge",
+            category: "molecules",
+            component: ScoreBadge,
+            description: "Score display with color-coded variants",
+            props: {
+                score: {
+                    type: "number",
+                    default: 14,
+                    min: 0,
+                    max: 20,
+                },
+                total: {
+                    type: "number",
+                    default: 20,
+                    min: 1,
+                    max: 100,
+                },
+                variant: {
+                    type: "select",
+                    default: "good",
+                    options: ["good", "warning", "caution", "neutral"],
+                },
             },
         },
     ],
@@ -492,6 +616,75 @@ export const componentLibrary = {
                 },
             },
         },
+        {
+            id: "notesTableRow",
+            name: "NotesTableRow",
+            category: "organisms",
+            component: NotesTableRow,
+            description: "Complete table row for notes display with student info, activity, score, and status",
+            props: {
+                student: {
+                    type: "object",
+                    default: {
+                        name: "Alice Dupont",
+                        avatar: "👤",
+                        avatarUrl: "",
+                        activity: ["Addition et Soustraction", "Se présenter", "3+..."],
+                        score: 14,
+                        scoreTotal: 20,
+                        scoreVariant: "good",
+                        status: "Validé",
+                        statusType: "success",
+                        date: "01/12/2024",
+                        time: "14:30",
+                    },
+                },
+            },
+        },
+        {
+            id: "notesFilterBar",
+            name: "NotesFilterBar",
+            category: "organisms",
+            component: NotesFilterBar,
+            description: "Filter bar with tabs and filter dropdowns for notes page",
+            props: {
+                tabs: {
+                    type: "array",
+                    default: [
+                        { id: "all", label: "Toutes les notes", showIcon: true },
+                        { id: "calculated", label: "Calculées", showIcon: false },
+                        { id: "todo", label: "A faire", showIcon: false },
+                        { id: "pending", label: "En attente", showIcon: false },
+                    ],
+                },
+                activeTab: {
+                    type: "string",
+                    default: "all",
+                },
+                onTabChange: {
+                    type: "function",
+                    default: (tabId) => console.log("Tab changed:", tabId),
+                },
+                filters: {
+                    type: "array",
+                    default: [
+                        { id: "class", label: "Classe(s)", onClick: () => console.log("Filter class") },
+                        { id: "activity", label: "Type d'activités", onClick: () => console.log("Filter activity") },
+                        { id: "diagnostic", label: "Diagnostic", onClick: () => console.log("Filter diagnostic") },
+                    ],
+                },
+            },
+        },
+    ],
+    pages: [
+        {
+            id: "notesPage",
+            name: "Notes Page",
+            category: "pages",
+            component: NotesPage,
+            description: "Complete notes overview page with filtering, table, and status tracking",
+            props: {},
+        },
     ],
 };
 
@@ -501,6 +694,7 @@ export const getAllComponents = () => {
         ...componentLibrary.atoms,
         ...componentLibrary.molecules,
         ...componentLibrary.organisms,
+        ...componentLibrary.pages,
     ];
 };
 

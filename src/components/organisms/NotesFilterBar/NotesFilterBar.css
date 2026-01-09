@@ -1,0 +1,18 @@
+.notes-filter-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.notes-filter-bar__tabs {
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid var(--color-brand-tertiary-15);
+}
+
+.notes-filter-bar__filters {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}

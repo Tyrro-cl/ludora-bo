@@ -23,8 +23,10 @@ const UICheckerPage = () => {
         <div className="component-card-preview">
           <div className="component-preview-wrapper">
             {component.id === "ludoraLogo" ? (
-              <component.component />
-            ) : component.id === "icon" ? (
+              <component.component />            ) : component.id === "filterPill" ? (
+              <component.component label="Filter" />
+            ) : component.id === "tabItem" ? (
+              <component.component label="Tab" active={false} />            ) : component.id === "icon" ? (
               <component.component name="circle" size={24} />
             ) : component.id === "counter" ? (
               <component.component count={5} />
@@ -60,6 +62,12 @@ const UICheckerPage = () => {
             ) : component.id === "sideNav" ? (
               <div className="side-nav-preview">
                 <component.component state="expanded" />
+              </div>
+            ) : component.id === "notesPage" ? (
+              <div className="notes-page-preview">
+                <div style={{ transform: 'scale(0.15)', transformOrigin: 'top left', width: '666%', height: '400px', overflow: 'hidden' }}>
+                  <component.component />
+                </div>
               </div>
             ) : (
               <div className="preview-placeholder">Preview</div>
@@ -105,6 +113,16 @@ const UICheckerPage = () => {
           <p className="section-description">Complex components built from molecules and atoms</p>
           <div className="component-grid">
             {componentLibrary.organisms.map((component) => (
+              <ComponentCard key={component.id} component={component} />
+            ))}
+          </div>
+        </section>
+
+        <section className="component-section">
+          <h2 className="section-title">Pages</h2>
+          <p className="section-description">Complete page layouts and templates</p>
+          <div className="component-grid">
+            {componentLibrary.pages.map((component) => (
               <ComponentCard key={component.id} component={component} />
             ))}
           </div>

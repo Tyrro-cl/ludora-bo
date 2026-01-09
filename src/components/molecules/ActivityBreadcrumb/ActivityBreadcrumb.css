@@ -1,0 +1,19 @@
+.activity-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.activity-breadcrumb__item {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.4;
+    color: rgba(251, 251, 254, 0.6);
+}
+
+.activity-breadcrumb__separator {
+    color: rgba(251, 251, 254, 1);
+    font-size: 12px;
+}

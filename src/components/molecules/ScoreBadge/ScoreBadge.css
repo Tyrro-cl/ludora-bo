@@ -1,0 +1,22 @@
+.score-badge {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.score-badge--good {
+    color: var(--color-utility-increase);
+}
+
+.score-badge--warning {
+    color: var(--color-utility-warning);
+}
+
+.score-badge--caution {
+    color: var(--color-utility-caution);
+}
+
+.score-badge--neutral {
+    color: var(--color-brand-tertiary-80);
+}

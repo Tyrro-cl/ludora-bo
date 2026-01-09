@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import TeacherLoginPage from './pages/TeacherLoginPage/TeacherLoginPage';
 import HomePage from './pages/HomePage/HomePage';
 import ActivitiesPage from './pages/ActivitiesPage/ActivitiesPage';
+import NotesPage from './pages/NotesPage';
 import UICheckerPage from './pages/UICheckerPage/UICheckerPage';
 import ComponentDetailPage from './pages/ComponentDetailPage/ComponentDetailPage';
 import './App.css';
@@ -30,6 +31,14 @@ function App() {
             element={
               <PrivateRoute>
                 <ActivitiesPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/notes" 
+            element={
+              <PrivateRoute>
+                <NotesPage />
               </PrivateRoute>
             } 
           />
