@@ -274,7 +274,12 @@ export const componentLibrary = {
                 label: {
                     type: "string",
                     default: "Filter",
-                    examples: ["Filter", "Classe(s)", "Type d'activités", "Diagnostic"],
+                    examples: [
+                        "Filter",
+                        "Classe(s)",
+                        "Type d'activités",
+                        "Diagnostic",
+                    ],
                 },
                 onClick: {
                     type: "function",
@@ -292,7 +297,13 @@ export const componentLibrary = {
                 label: {
                     type: "string",
                     default: "Tab",
-                    examples: ["Tab", "Toutes les notes", "Calculées", "A faire", "En attente"],
+                    examples: [
+                        "Tab",
+                        "Toutes les notes",
+                        "Calculées",
+                        "A faire",
+                        "En attente",
+                    ],
                 },
                 active: {
                     type: "boolean",
@@ -407,7 +418,11 @@ export const componentLibrary = {
                 name: {
                     type: "string",
                     default: "Student Name",
-                    examples: ["Alice Dupont", "Thomas Martin", "Sophie Bernard"],
+                    examples: [
+                        "Alice Dupont",
+                        "Thomas Martin",
+                        "Sophie Bernard",
+                    ],
                 },
                 avatar: {
                     type: "string",
@@ -430,7 +445,11 @@ export const componentLibrary = {
             props: {
                 items: {
                     type: "array",
-                    default: ["Addition et Soustraction", "Se présenter", "3+..."],
+                    default: [
+                        "Addition et Soustraction",
+                        "Se présenter",
+                        "3+...",
+                    ],
                     examples: [
                         ["Math", "Lesson 1"],
                         ["Addition et Soustraction", "Se présenter", "3+..."],
@@ -621,7 +640,8 @@ export const componentLibrary = {
             name: "NotesTableRow",
             category: "organisms",
             component: NotesTableRow,
-            description: "Complete table row for notes display with student info, activity, score, and status",
+            description:
+                "Complete table row for notes display with student info, activity, score, and status",
             props: {
                 student: {
                     type: "object",
@@ -629,7 +649,11 @@ export const componentLibrary = {
                         name: "Alice Dupont",
                         avatar: "👤",
                         avatarUrl: "",
-                        activity: ["Addition et Soustraction", "Se présenter", "3+..."],
+                        activity: [
+                            "Addition et Soustraction",
+                            "Se présenter",
+                            "3+...",
+                        ],
                         score: 14,
                         scoreTotal: 20,
                         scoreVariant: "good",
@@ -646,13 +670,22 @@ export const componentLibrary = {
             name: "NotesFilterBar",
             category: "organisms",
             component: NotesFilterBar,
-            description: "Filter bar with tabs and filter dropdowns for notes page",
+            description:
+                "Filter bar with tabs and filter dropdowns for notes page",
             props: {
                 tabs: {
                     type: "array",
                     default: [
-                        { id: "all", label: "Toutes les notes", showIcon: true },
-                        { id: "calculated", label: "Calculées", showIcon: false },
+                        {
+                            id: "all",
+                            label: "Toutes les notes",
+                            showIcon: true,
+                        },
+                        {
+                            id: "calculated",
+                            label: "Calculées",
+                            showIcon: false,
+                        },
                         { id: "todo", label: "A faire", showIcon: false },
                         { id: "pending", label: "En attente", showIcon: false },
                     ],
@@ -668,9 +701,21 @@ export const componentLibrary = {
                 filters: {
                     type: "array",
                     default: [
-                        { id: "class", label: "Classe(s)", onClick: () => console.log("Filter class") },
-                        { id: "activity", label: "Type d'activités", onClick: () => console.log("Filter activity") },
-                        { id: "diagnostic", label: "Diagnostic", onClick: () => console.log("Filter diagnostic") },
+                        {
+                            id: "class",
+                            label: "Classe(s)",
+                            onClick: () => console.log("Filter class"),
+                        },
+                        {
+                            id: "activity",
+                            label: "Type d'activités",
+                            onClick: () => console.log("Filter activity"),
+                        },
+                        {
+                            id: "diagnostic",
+                            label: "Diagnostic",
+                            onClick: () => console.log("Filter diagnostic"),
+                        },
                     ],
                 },
             },
@@ -682,7 +727,8 @@ export const componentLibrary = {
             name: "Notes Page",
             category: "pages",
             component: NotesPage,
-            description: "Complete notes overview page with filtering, table, and status tracking",
+            description:
+                "Complete notes overview page with filtering, table, and status tracking",
             props: {},
         },
     ],

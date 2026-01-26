@@ -1,0 +1,402 @@
+.student-detail-page {
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.student-detail-loading,
+.student-detail-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 20px;
+    color: rgba(251, 251, 254, 0.6);
+    font-family: "Lexend Deca", sans-serif;
+}
+
+/* Breadcrumb */
+.student-detail-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+}
+
+.breadcrumb-link {
+    background: none;
+    border: none;
+    color: var(--color-brand-alternate, #ff8844);
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    transition: opacity 0.2s;
+}
+
+.breadcrumb-link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.breadcrumb-current {
+    color: rgba(251, 251, 254, 0.6);
+}
+
+/* Header */
+.student-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 12px;
+}
+
+.student-header-main {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.student-avatar-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--color-brand-alternate, #ff8844);
+    flex-shrink: 0;
+}
+
+.student-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.student-header-info h1 {
+    font-family: "Brevia", sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0 0 8px 0;
+}
+
+.student-class {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 16px;
+    color: rgba(251, 251, 254, 0.7);
+    margin: 0 0 12px 0;
+}
+
+.student-header-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.student-header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Stats Grid */
+.student-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.stat-card:hover {
+    border-color: var(--color-brand-alternate, #ff8844);
+    background: rgba(251, 251, 254, 0.02);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 136, 68, 0.1);
+    border-radius: 8px;
+    color: var(--color-brand-alternate, #ff8844);
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 13px;
+    color: rgba(251, 251, 254, 0.6);
+    margin: 0 0 4px 0;
+}
+
+.stat-value {
+    font-family: "Helvetica", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0;
+}
+
+/* Tabs */
+.student-detail-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid rgba(251, 251, 254, 0.1);
+    margin-bottom: 32px;
+}
+
+.tab-button {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    color: rgba(251, 251, 254, 0.6);
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button:hover {
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+}
+
+.tab-button.active {
+    color: var(--color-brand-alternate, #ff8844);
+    border-bottom-color: var(--color-brand-alternate, #ff8844);
+}
+
+/* Tab Content */
+.student-detail-content {
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 8px;
+    padding: 32px;
+}
+
+.student-detail-content h2 {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0 0 24px 0;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: rgba(251, 251, 254, 0.5);
+    font-family: "Lexend Deca", sans-serif;
+}
+
+/* Activities */
+.activities-table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.activity-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 150px 120px;
+    gap: 16px;
+    align-items: center;
+    padding: 16px;
+    background: rgba(251, 251, 254, 0.03);
+    border: 1px solid rgba(251, 251, 254, 0.1);
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.activity-row:hover {
+    background: rgba(251, 251, 254, 0.05);
+    border-color: var(--color-brand-alternate, #ff8844);
+}
+
+.activity-info h3 {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0 0 8px 0;
+}
+
+.activity-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(251, 251, 254, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--color-brand-alternate, #ff8844);
+    transition: width 0.3s;
+}
+
+.progress-text {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 12px;
+    color: rgba(251, 251, 254, 0.7);
+    min-width: 40px;
+}
+
+.activity-score {
+    display: flex;
+    justify-content: center;
+}
+
+.no-score {
+    color: rgba(251, 251, 254, 0.4);
+    font-size: 18px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status-en-cours {
+    background: rgba(255, 136, 68, 0.1);
+    color: var(--color-brand-alternate, #ff8844);
+}
+
+.status-terminé {
+    background: rgba(72, 187, 120, 0.1);
+    color: #48bb78;
+}
+
+/* Notes */
+.notes-table {
+    border: 1px solid rgba(251, 251, 254, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.notes-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 12px 16px;
+    background: rgba(251, 251, 254, 0.05);
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(251, 251, 254, 0.8);
+    border-bottom: 1px solid rgba(251, 251, 254, 0.1);
+}
+
+.notes-table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    border-bottom: 1px solid rgba(251, 251, 254, 0.05);
+}
+
+.notes-table-row:last-child {
+    border-bottom: none;
+}
+
+.notes-table-row:hover {
+    background: rgba(251, 251, 254, 0.02);
+}
+
+/* Info */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-item label {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(251, 251, 254, 0.6);
+}
+
+.info-item p {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 15px;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .student-detail-page {
+        padding: 20px;
+    }
+
+    .student-detail-header {
+        flex-direction: column;
+    }
+
+    .student-header-actions {
+        width: 100%;
+    }
+
+    .student-header-actions button {
+        flex: 1;
+    }
+
+    .activity-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .notes-table-header,
+    .notes-table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .notes-table-header div:not(:first-child) {
+        display: none;
+    }
+}

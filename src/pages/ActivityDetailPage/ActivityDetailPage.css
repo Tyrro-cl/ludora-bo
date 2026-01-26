@@ -1,0 +1,512 @@
+.activity-detail-page {
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.activity-detail-loading,
+.activity-detail-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 20px;
+    color: rgba(251, 251, 254, 0.6);
+    font-family: "Lexend Deca", sans-serif;
+}
+
+/* Breadcrumb */
+.activity-detail-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+}
+
+.breadcrumb-link {
+    background: none;
+    border: none;
+    color: var(--color-brand-alternate, #ff8844);
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    transition: opacity 0.2s;
+}
+
+.breadcrumb-link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.breadcrumb-current {
+    color: rgba(251, 251, 254, 0.6);
+}
+
+/* Header */
+.activity-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 12px;
+}
+
+.activity-header-main {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.activity-header-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 136, 68, 0.1);
+    border-radius: 12px;
+    color: var(--color-brand-alternate, #ff8844);
+    flex-shrink: 0;
+}
+
+.activity-header-info h1 {
+    font-family: "Brevia", sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0 0 8px 0;
+}
+
+.activity-theme {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    color: var(--color-brand-alternate, #ff8844);
+    margin: 0 0 12px 0;
+    font-weight: 500;
+}
+
+.activity-description {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 15px;
+    color: rgba(251, 251, 254, 0.7);
+    margin: 0;
+    max-width: 600px;
+}
+
+.activity-header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Stats Grid */
+.activity-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.stat-card:hover {
+    border-color: var(--color-brand-alternate, #ff8844);
+    background: rgba(251, 251, 254, 0.02);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 136, 68, 0.1);
+    border-radius: 8px;
+    color: var(--color-brand-alternate, #ff8844);
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 13px;
+    color: rgba(251, 251, 254, 0.6);
+    margin: 0 0 4px 0;
+}
+
+.stat-value {
+    font-family: "Helvetica", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0;
+}
+
+.stat-sublabel {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 12px;
+    color: rgba(251, 251, 254, 0.5);
+    margin: 4px 0 0 0;
+}
+
+.stat-progress-bar {
+    height: 6px;
+    background: rgba(251, 251, 254, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.stat-progress-fill {
+    height: 100%;
+    background: var(--color-brand-alternate, #ff8844);
+    transition: width 0.3s;
+}
+
+/* Details Section */
+.activity-details-section {
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-item label {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(251, 251, 254, 0.6);
+}
+
+.detail-item p {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 15px;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0;
+}
+
+/* Tabs */
+.activity-detail-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid rgba(251, 251, 254, 0.1);
+    margin-bottom: 32px;
+}
+
+.tab-button {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    color: rgba(251, 251, 254, 0.6);
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button:hover {
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+}
+
+.tab-button.active {
+    color: var(--color-brand-alternate, #ff8844);
+    border-bottom-color: var(--color-brand-alternate, #ff8844);
+}
+
+/* Tab Content */
+.activity-detail-content {
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 8px;
+    padding: 32px;
+}
+
+.activity-detail-content h2 {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0 0 16px 0;
+}
+
+.activity-detail-content h3 {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 24px 0 12px 0;
+}
+
+.overview-content p {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 15px;
+    color: rgba(251, 251, 254, 0.7);
+    line-height: 1.6;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-list li {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 15px;
+    color: rgba(251, 251, 254, 0.7);
+    padding: 12px;
+    background: rgba(251, 251, 254, 0.03);
+    border-left: 3px solid var(--color-brand-alternate, #ff8844);
+    border-radius: 4px;
+}
+
+.info-list li strong {
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    font-weight: 600;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: rgba(251, 251, 254, 0.5);
+    font-family: "Lexend Deca", sans-serif;
+}
+
+/* Submissions */
+.submissions-table {
+    border: 1px solid rgba(251, 251, 254, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.submissions-table-header {
+    display: grid;
+    grid-template-columns: 2fr 120px 120px 100px 90px 140px;
+    gap: 16px;
+    padding: 12px 16px;
+    background: rgba(251, 251, 254, 0.05);
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(251, 251, 254, 0.8);
+    border-bottom: 1px solid rgba(251, 251, 254, 0.1);
+}
+
+.submissions-table-row {
+    display: grid;
+    grid-template-columns: 2fr 120px 120px 100px 90px 140px;
+    gap: 16px;
+    padding: 16px;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    border-bottom: 1px solid rgba(251, 251, 254, 0.05);
+    transition: background 0.2s;
+}
+
+.submissions-table-row:hover {
+    background: rgba(251, 251, 254, 0.02);
+}
+
+.submissions-table-row:last-child {
+    border-bottom: none;
+}
+
+.submission-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+}
+
+.no-score {
+    color: rgba(251, 251, 254, 0.4);
+    font-size: 16px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.status-terminé {
+    background: rgba(72, 187, 120, 0.1);
+    color: #48bb78;
+}
+
+.status-en-cours {
+    background: rgba(255, 136, 68, 0.1);
+    color: var(--color-brand-alternate, #ff8844);
+}
+
+.status-non-commencé {
+    background: rgba(100, 116, 139, 0.1);
+    color: #64748b;
+}
+
+.status-en-risque {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+/* Analytics */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.analytics-card {
+    background: rgba(251, 251, 254, 0.03);
+    border: 1px solid rgba(251, 251, 254, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.analytics-card h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.analytics-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.analytics-value {
+    font-family: "Helvetica", sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--color-brand-alternate, #ff8844);
+    margin: 0;
+}
+
+.analytics-label {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 13px;
+    color: rgba(251, 251, 254, 0.6);
+    margin: 8px 0 0 0;
+}
+
+.score-distribution {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.distribution-bar {
+    display: flex;
+    height: 100px;
+    gap: 4px;
+    align-items: flex-end;
+}
+
+.bar-segment {
+    flex: 1;
+    background: linear-gradient(
+        135deg,
+        var(--color-brand-alternate, #ff8844),
+        rgba(255, 136, 68, 0.6)
+    );
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+    .submissions-table-header,
+    .submissions-table-row {
+        grid-template-columns: 1.5fr 100px 100px 80px;
+    }
+
+    .submissions-table-row:nth-child(n + 5) {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .activity-detail-page {
+        padding: 20px;
+    }
+
+    .activity-detail-header {
+        flex-direction: column;
+    }
+
+    .activity-header-actions {
+        width: 100%;
+    }
+
+    .activity-header-actions button {
+        flex: 1;
+    }
+
+    .submissions-table-header,
+    .submissions-table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .submissions-table-header div:not(:first-child) {
+        display: none;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+}

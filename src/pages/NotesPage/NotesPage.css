@@ -35,7 +35,7 @@
 }
 
 .notes-page__title {
-    font-family: 'Brevia', sans-serif;
+    font-family: "Brevia", sans-serif;
     font-weight: 700;
     font-size: 40px;
     line-height: 1.1;
@@ -58,7 +58,7 @@
     padding: 0 8px;
     border: 1px solid rgba(46, 44, 116, 0.3);
     border-radius: 4px;
-    font-family: 'Lexend Deca', sans-serif;
+    font-family: "Lexend Deca", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 26.4px;
@@ -144,7 +144,7 @@
 }
 
 .notes-page__tab-label {
-    font-family: 'Lexend Deca', sans-serif;
+    font-family: "Lexend Deca", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: normal;
@@ -195,7 +195,7 @@
 }
 
 .notes-page__filter-pill-label {
-    font-family: 'Lexend Deca', sans-serif;
+    font-family: "Lexend Deca", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: normal;
@@ -225,7 +225,10 @@
 
 .notes-table {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.50fr) minmax(0, 1fr) minmax(0, 0.50fr) minmax(0, 0.75fr) minmax(0, 0.25fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.5fr) minmax(0, 1fr) minmax(
+            0,
+            0.5fr
+        ) minmax(0, 0.75fr) minmax(0, 0.25fr);
     grid-auto-rows: fit-content;
     gap: 16px;
     padding: 0 24px;
@@ -280,7 +283,7 @@
 }
 
 .notes-table__student-name {
-    font-family: 'Helvetica', sans-serif;
+    font-family: "Helvetica", sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 1.4;
@@ -289,7 +292,7 @@
 
 /* Class Cell */
 .notes-table__class {
-    font-family: 'Helvetica', sans-serif;
+    font-family: "Helvetica", sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 1.4;
@@ -305,7 +308,7 @@
 }
 
 .notes-table__activity-text {
-    font-family: 'Helvetica', sans-serif;
+    font-family: "Helvetica", sans-serif;
     font-weight: 700;
     font-size: 12px;
     line-height: 1.4;
@@ -318,7 +321,7 @@
 
 /* Score Cell */
 .notes-table__score {
-    font-family: 'Helvetica', sans-serif;
+    font-family: "Helvetica", sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 1.4;
@@ -372,7 +375,7 @@
 }
 
 .notes-table__status-text {
-    font-family: 'Lexend Deca', sans-serif;
+    font-family: "Lexend Deca", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.4;

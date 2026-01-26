@@ -1,0 +1,172 @@
+.messages-page {
+    padding: 40px;
+    max-width: 100%;
+}
+
+.messages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.messages-header h1 {
+    font-family: "Brevia", sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    margin: 0;
+}
+
+.messages-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.messages-loading,
+.messages-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(251, 251, 254, 0.6);
+    font-size: 16px;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.message-item {
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.message-item:hover {
+    background: rgba(251, 251, 254, 0.05);
+    border-color: var(--color-brand-alternate, #ff8844);
+}
+
+.message-item.selected {
+    background: rgba(255, 136, 68, 0.1);
+    border-color: var(--color-brand-alternate, #ff8844);
+}
+
+.message-item.unread {
+    border-left: 3px solid var(--color-brand-alternate, #ff8844);
+    padding-left: 13px;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.message-sender {
+    font-weight: 600;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 16px;
+}
+
+.message-time {
+    color: rgba(251, 251, 254, 0.5);
+    font-size: 12px;
+    font-family: "Lexend Deca", sans-serif;
+}
+
+.message-subject {
+    font-weight: 500;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.message-preview {
+    color: rgba(251, 251, 254, 0.6);
+    font-size: 14px;
+    font-family: "Lexend Deca", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.message-detail {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    max-width: calc(100vw - 20px);
+    background: var(--color-bg-dark-light, #3a3540);
+    border: 1px solid var(--color-brand-cloud-60, rgba(251, 251, 254, 0.3));
+    border-radius: 8px 8px 0 0;
+    padding: 20px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.message-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(251, 251, 254, 0.1);
+    padding-bottom: 16px;
+}
+
+.message-detail-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--color-brand-tertiary-100, #fbfbfe);
+    font-family: "Lexend Deca", sans-serif;
+    font-weight: 600;
+}
+
+.message-detail-info {
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: rgba(251, 251, 254, 0.7);
+    font-family: "Lexend Deca", sans-serif;
+}
+
+.message-detail-info p {
+    margin: 4px 0;
+}
+
+.message-detail-body {
+    color: rgba(251, 251, 254, 0.8);
+    line-height: 1.6;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .messages-page {
+        padding: 20px;
+    }
+
+    .messages-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .messages-header h1 {
+        font-size: 28px;
+    }
+
+    .message-detail {
+        width: calc(100vw - 40px);
+        right: 20px;
+    }
+}

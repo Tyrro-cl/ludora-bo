@@ -72,27 +72,18 @@ const HomePage = () => {
 
     fetchStats();
   }, []);
-  
-  const activitiesMenuItems = [
-    { 
-      id: 1, 
-      label: 'Toutes les activités', 
-      count: stats.activities, 
-      isSelected: false,
-      onClick: () => navigate('/activities')
-    },
-    { 
-      id: 2, 
-      label: 'Thèmes', 
-      count: stats.themes, 
-      isSelected: false,
-      onClick: () => navigate('/activities')
-    },
+
+  const navItems = [
+    { id: 'home', label: 'Accueil', icon: 'home', selected: true, onClick: () => navigate('/home/overview') },
+    { id: 'students', label: "Tableau d'Éleves", icon: 'users', onClick: () => navigate('/notes') },
+    { id: 'activities', label: 'Activités', icon: 'listTodo', onClick: () => navigate('/activities') },
+    { id: 'messages', label: 'Mes messages', icon: 'messagesSquare', count: 0, countVariant: 'alert', onClick: () => navigate('/messages') },
+    { id: 'admin', label: 'Administration', icon: 'settings', onClick: () => navigate('/administration') },
   ];
 
   if (loading) {
     return (
-      <DashboardLayout user={user} onLogout={logout}>
+      <DashboardLayout user={user} onLogout={logout} navItems={navItems} selectedNavItem="home">
         <div className="home-loading">
           <p>Chargement...</p>
         </div>
@@ -101,8 +92,24 @@ const HomePage = () => {
   }
 
   return (
-    <DashboardLayout user={user} onLogout={logout}>
+    <DashboardLayout user={user} onLogout={logout} navItems={navItems} selectedNavItem="home">
       <div className="home-page">
+        <div className="home-subpage-header">
+          <div>
+            <p className="home-subtitle">Accueil</p>
+            <h1 className="home-title">Vue d'ensemble</h1>
+            <p className="home-description">Synthèse de vos classes, élèves et activités.</p>
+          </div>
+          <div className="home-subpage-actions">
+            <Button variant="secondary" size="medium" onClick={() => navigate('/notes')}>
+              Voir les élèves
+            </Button>
+            <Button variant="primary" size="medium" onClick={() => navigate('/activities')}>
+              Créer une activité
+            </Button>
+          </div>
+        </div>
+
         <div className="home-content">
           <section className="home-activity-section">
             <div className="home-activity-header">

@@ -3,7 +3,7 @@ import SideNav from '../SideNav/SideNav';
 import TopNav from '../TopNav/TopNav';
 import './DashboardLayout.css';
 
-const DashboardLayout = ({ children, user, onLogout }) => {
+const DashboardLayout = ({ children, user, onLogout, navItems: customNavItems, selectedNavItem }) => {
   const [sideNavExpanded, setSideNavExpanded] = useState(true);
   const [notifications, setNotifications] = useState(null);
 
@@ -15,13 +15,14 @@ const DashboardLayout = ({ children, user, onLogout }) => {
     setNotifications(notifications ? null : 'open');
   };
 
-  const navItems = [
+  // Use custom nav items if provided, otherwise use defaults
+  const navItems = customNavItems || [
     {
       id: 'dashboard',
       label: 'Tableau de bord',
       icon: 'home',
       selected: false,
-      onClick: () => window.location.href = '/home'
+      onClick: () => window.location.href = '/home/overview'
     },
     {
       id: 'classes',
@@ -45,6 +46,12 @@ const DashboardLayout = ({ children, user, onLogout }) => {
       onClick: () => window.location.href = '/students'
     },
   ];
+
+  // Update selected state based on selectedNavItem prop
+  const finalNavItems = navItems.map(item => ({
+    ...item,
+    selected: selectedNavItem ? item.id === selectedNavItem : item.selected
+  }));
 
   const activityItems = [
     { id: 'published', label: 'Publiées', count: 12 },
@@ -124,7 +131,7 @@ const DashboardLayout = ({ children, user, onLogout }) => {
           <SideNav
             state={sideNavExpanded ? 'expanded' : 'collapsed'}
             user={sideNavUser}
-            navItems={navItems}
+            navItems={finalNavItems}
             activityItems={activityItems}
             stats={stats}
             help={help}

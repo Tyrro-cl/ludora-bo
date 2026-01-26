@@ -7,6 +7,10 @@ import TeacherLoginPage from './pages/TeacherLoginPage/TeacherLoginPage';
 import HomePage from './pages/HomePage/HomePage';
 import ActivitiesPage from './pages/ActivitiesPage/ActivitiesPage';
 import NotesPage from './pages/NotesPage';
+import MessagesPage from './pages/MessagesPage';
+import AdministrationPage from './pages/AdministrationPage';
+import StudentDetailPage from './pages/StudentDetailPage';
+import ActivityDetailPage from './pages/ActivityDetailPage';
 import UICheckerPage from './pages/UICheckerPage/UICheckerPage';
 import ComponentDetailPage from './pages/ComponentDetailPage/ComponentDetailPage';
 import './App.css';
@@ -20,6 +24,10 @@ function App() {
           <Route path="/login/teacher" element={<TeacherLoginPage />} />
           <Route 
             path="/home" 
+            element={<Navigate to="/home/overview" replace />} 
+          />
+          <Route 
+            path="/home/overview" 
             element={
               <PrivateRoute>
                 <HomePage />
@@ -35,10 +43,42 @@ function App() {
             } 
           />
           <Route 
+            path="/activities/:activityId" 
+            element={
+              <PrivateRoute>
+                <ActivityDetailPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
             path="/notes" 
             element={
               <PrivateRoute>
                 <NotesPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/students/:studentId" 
+            element={
+              <PrivateRoute>
+                <StudentDetailPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/messages" 
+            element={
+              <PrivateRoute>
+                <MessagesPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/administration" 
+            element={
+              <PrivateRoute>
+                <AdministrationPage />
               </PrivateRoute>
             } 
           />

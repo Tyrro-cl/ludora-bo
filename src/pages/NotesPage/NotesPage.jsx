@@ -78,6 +78,38 @@ const mockStudents = [
 const NotesPage = () => {
   const [activeTab, setActiveTab] = useState('all');
 
+  const handleExportNotes = () => {
+    // Prepare data for CSV export
+    const headers = ['Nom', 'Classe', 'Activité', 'Note', 'Statut', 'Date'];
+    const rows = mockStudents.map(student => [
+      student.name,
+      student.class,
+      student.activity,
+      student.score,
+      student.statusText,
+      new Date().toLocaleDateString('fr-FR')
+    ]);
+
+    // Create CSV content
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    // Create blob and download
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', `notes_export_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const getStatusIcon = (status) => {
     switch (status) {
       case 'success':
@@ -100,6 +132,9 @@ const NotesPage = () => {
       case 'warning':
         return 'notes-table__score--warning';
       case 'caution':
+                  className="notes-page__action-btn notes-page__action-btn--export"
+                  onClick={handleExportNotes}
+                
         return 'notes-table__score--caution';
       default:
         return '';

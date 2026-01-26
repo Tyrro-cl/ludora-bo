@@ -23,7 +23,7 @@ const TeacherLoginPage = () => {
     const result = await login(email, password);
     
     if (result.success) {
-      navigate('/home');
+      navigate('/home/overview');
     } else {
       setError(result.error);
     }
