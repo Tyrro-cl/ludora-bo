@@ -18,11 +18,18 @@ import SidebarMenuItem from "../components/molecules/SidebarMenuItem/SidebarMenu
 import StudentInfo from "../components/molecules/StudentInfo/StudentInfo";
 import ActivityBreadcrumb from "../components/molecules/ActivityBreadcrumb/ActivityBreadcrumb";
 import ScoreBadge from "../components/molecules/ScoreBadge/ScoreBadge";
+import Search from "../components/molecules/Search/Search";
+import ActionCard from "../components/molecules/ActionCard/ActionCard";
+import ContentCard from "../components/molecules/ContentCard/ContentCard";
 import LoginForm from "../components/organisms/LoginForm/LoginForm";
 import SideDropMenu from "../components/organisms/SideDropMenu/SideDropMenu";
 import SideNav from "../components/organisms/SideNav/SideNav";
 import NotesTableRow from "../components/organisms/NotesTableRow/NotesTableRow";
 import NotesFilterBar from "../components/organisms/NotesFilterBar/NotesFilterBar";
+import Header from "../components/organisms/Header/Header";
+import ActivitySection from "../components/organisms/ActivitySection/ActivitySection";
+import ActivitiesTableByTheme from "../components/organisms/ActivitiesTableByTheme/ActivitiesTableByTheme";
+import Repassages from "../components/organisms/Repassages/Repassages";
 import NotesPage from "../pages/NotesPage/NotesPage";
 
 export const componentLibrary = {
@@ -488,6 +495,76 @@ export const componentLibrary = {
                 },
             },
         },
+        {
+            id: "search",
+            name: "Search",
+            category: "molecules",
+            component: Search,
+            description: "Search input with icon for dashboard header",
+            props: {
+                placeholder: {
+                    type: "string",
+                    default: "Rechercher... (Addition, TP, Dictee)",
+                    examples: [
+                        "Rechercher... (Addition, TP, Dictee)",
+                        "Search...",
+                    ],
+                },
+                value: { type: "string", default: "" },
+                onChange: {
+                    type: "function",
+                    default: () => console.log("Search change"),
+                },
+            },
+        },
+        {
+            id: "actionCard",
+            name: "ActionCard",
+            category: "molecules",
+            component: ActionCard,
+            description: "Editorial action card used on the dashboard",
+            props: {
+                tag: {
+                    type: "string",
+                    default: "Concu pour la pedagogie",
+                    examples: ["Concu pour la pedagogie", "Nouveautes"],
+                },
+                title: {
+                    type: "string",
+                    default:
+                        "Certificats d'aptitude aux fonctions de formateur",
+                },
+                description: {
+                    type: "string",
+                    default:
+                        "Conformes avec les directives ministerielles et les objectifs du programme scolaire",
+                },
+                ctaLabel: {
+                    type: "string",
+                    default: "Placeholder",
+                },
+            },
+        },
+        {
+            id: "contentCard",
+            name: "ContentCard",
+            category: "molecules",
+            component: ContentCard,
+            description: "Content highlight card with overlay and CTA",
+            props: {
+                tag: { type: "string", default: "#Handicap" },
+                title: {
+                    type: "string",
+                    default: "Dans la vie des sourds-muets",
+                },
+                description: {
+                    type: "string",
+                    default:
+                        "Notre solution educative integre les recommandations du Ministere de l'Education Nationale en matiere d'inclusion scolaire",
+                },
+                ctaLabel: { type: "string", default: "Placeholder" },
+            },
+        },
     ],
     organisms: [
         {
@@ -633,6 +710,86 @@ export const componentLibrary = {
                         },
                     ],
                 },
+            },
+        },
+        {
+            id: "header",
+            name: "Header",
+            category: "organisms",
+            component: Header,
+            description: "Dashboard header with breadcrumb and search",
+            props: {
+                crumb1Text: {
+                    type: "string",
+                    default: "Crumb1",
+                    examples: ["Crumb1", "Accueil", "Activites"],
+                },
+                crumbText: {
+                    type: "string",
+                    default: "ItemSelected",
+                    examples: ["ItemSelected", "Vue d'ensemble"],
+                },
+                searchPlaceholder: {
+                    type: "string",
+                    default: "Rechercher... (Addition, TP, Dictee)",
+                },
+            },
+        },
+        {
+            id: "activitySection",
+            name: "ActivitySection",
+            category: "organisms",
+            component: ActivitySection,
+            description: "Dashboard hero with current activity cards",
+            props: {
+                title: {
+                    type: "string",
+                    default: "Ca se passe ici !",
+                },
+                subtitle: {
+                    type: "string",
+                    default: "Qu-est-ce qu'on apprendre ?",
+                },
+                description: {
+                    type: "string",
+                    default:
+                        "Suivez en un coup d'oeil les apprentissages en cours dans l'application.",
+                },
+                ctaLabel: { type: "string", default: "Placeholder" },
+            },
+        },
+        {
+            id: "activitiesTableByTheme",
+            name: "ActivitiesTableByTheme",
+            category: "organisms",
+            component: ActivitiesTableByTheme,
+            description: "Activities recap table with theme tabs",
+            props: {
+                title: {
+                    type: "string",
+                    default: "Recapitulatif des activites",
+                },
+                subtitle: {
+                    type: "string",
+                    default: "+23 que la semaine derniere",
+                },
+                tabs: { type: "array", default: [] },
+                rows: { type: "array", default: [] },
+            },
+        },
+        {
+            id: "repassages",
+            name: "Repassages",
+            category: "organisms",
+            component: Repassages,
+            description: "Tracking table for repetition cycles",
+            props: {
+                title: { type: "string", default: "Suivi des repassages" },
+                cycleLabel: {
+                    type: "string",
+                    default: "3 cycles faits ce mois",
+                },
+                rows: { type: "array", default: [] },
             },
         },
         {

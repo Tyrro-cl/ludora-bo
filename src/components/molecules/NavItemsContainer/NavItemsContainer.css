@@ -1,0 +1,28 @@
+.nav-items-container {
+    display: flex;
+    gap: 4px;
+    align-items: flex-start;
+    opacity: 0.8;
+    padding-left: var(--text-size-2, 12px);
+    position: relative;
+    width: 278px;
+}
+
+.nav-items-container-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-left: var(--text-size-2, 12px);
+    position: relative;
+    flex-shrink: 0;
+    width: 264px;
+}
+
+.nav-items-container-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+}

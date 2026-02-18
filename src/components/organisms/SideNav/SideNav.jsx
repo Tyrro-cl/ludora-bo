@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import Icon from '../../atoms/Icon/Icon';
 import Counter from '../../atoms/Counter/Counter';
 import './SideNav.css';
@@ -11,38 +11,79 @@ const DEFAULT_USER = {
   avatarUrl: DEFAULT_AVATAR,
 };
 
-const DEFAULT_NAV_ITEMS = [
-  { id: 'students', label: "Tableau d'Éleves", icon: 'users', selected: false },
-  { id: 'messages', label: 'Mes messages', icon: 'messagesSquare', count: 0, countVariant: 'alert' },
-  { id: 'admin', label: 'Administration', icon: 'settings', selected: false },
-];
-
-const DEFAULT_ACTIVITY_ITEMS = [
-  { id: 'published', label: 'Publiées', count: 0 },
-  { id: 'drafts', label: 'Brouillons', count: 0 },
-  { id: 'scheduled', label: 'Programmées', count: 0 },
-];
-
-const DEFAULT_STATS = [
-  { id: 'todayActivities', title: 'Activités du jour', value: 16, trend: '+11%', trendTone: 'positive', icon: 'taskSquare' },
-  { id: 'userOfDay', title: 'Utilisateur du jour', value: 56, trend: '-2%', trendTone: 'negative', icon: 'taskSquare' },
-  { id: 'parentMessages', title: 'Messages parent', value: 205, trend: '-11%', trendTone: 'warning', icon: 'taskSquare' },
-  { id: 'studentAlerts', title: 'Alertes étudiantes', value: 10, trend: '-8%', trendTone: 'warning', icon: 'taskSquare' },
+const DEFAULT_NAV_GROUPS = [
+  {
+    id: 'home',
+    label: 'Accueil',
+    icon: 'Home',
+    expanded: true,
+    items: [
+      { id: 'overview', label: "Vue d'ensemble", icon: 'Grid', selected: true },
+    ],
+  },
+  {
+    id: 'students',
+    label: "Tableau d'élèves",
+    icon: 'Database',
+    counter: 203,
+    counterVariant: 'success',
+    expanded: true,
+    items: [
+      { id: 'notes', label: 'Toutes les notes', icon: 'BarChart3' },
+    ],
+  },
+  {
+    id: 'activities',
+    label: 'Activités',
+    icon: 'ListTodo',
+    counter: 32,
+    counterVariant: 'success',
+    expanded: true,
+    items: [
+      { id: 'allActivities', label: 'Toutes les activités', icon: 'BookOpen' },
+    ],
+  },
 ];
 
 const DEFAULT_HELP = {
-  title: "Besoin d'aide?",
-  description: "Consultez notre guide d'utilisation",
-  ctaLabel: 'Consulter le guide',
-  icon: 'messageCircleQuestion',
+  title: 'Besoin d\'aide?',
+  description: "Consultez notre guide d'utilisation et nos ressources",
+  ctaLabel: 'Voir le guide',
+  icon: 'BookOpen',
 };
+
+function normalizeNavGroups(navGroups, navItems) {
+  if (Array.isArray(navGroups) && navGroups.length) return navGroups;
+  if (!Array.isArray(navItems) || !navItems.length) return DEFAULT_NAV_GROUPS;
+  // Fallback: wrap flat nav items into groups so the component keeps working
+  return navItems.map((item) => ({
+    id: item.id,
+    label: item.label,
+    icon: item.icon,
+    counter: item.count,
+    counterVariant: item.countVariant,
+    expanded: true,
+    items: item.children && item.children.length
+      ? item.children
+      : [
+          {
+            id: `${item.id}-link`,
+            label: item.label,
+            icon: item.icon,
+            onClick: item.onClick,
+            selected: item.selected,
+            count: item.count,
+            countVariant: item.countVariant,
+          },
+        ],
+  }));
+}
 
 const SideNav = memo(function SideNav({
   state = 'expanded',
   user = DEFAULT_USER,
-  navItems = DEFAULT_NAV_ITEMS,
-  activityItems = DEFAULT_ACTIVITY_ITEMS,
-  stats = DEFAULT_STATS,
+  navGroups: navGroupsProp,
+  navItems, // kept for backward compatibility
   help = DEFAULT_HELP,
   onToggle,
   onHelpClick,
@@ -51,68 +92,106 @@ const SideNav = memo(function SideNav({
   const isExpanded = state === 'expanded';
   const nextState = isExpanded ? 'collapsed' : 'expanded';
 
+  const navGroups = useMemo(() => normalizeNavGroups(navGroupsProp, navItems), [navGroupsProp, navItems]);
+
+  const [expandedGroups, setExpandedGroups] = useState(() => {
+    const initial = {};
+    navGroups.forEach((group) => {
+      initial[group.id] = group.expanded !== false;
+    });
+    return initial;
+  });
+
+  useEffect(() => {
+    setExpandedGroups((prev) => {
+      const updated = { ...prev };
+      navGroups.forEach((group) => {
+        if (updated[group.id] === undefined) {
+          updated[group.id] = group.expanded !== false;
+        }
+      });
+      return updated;
+    });
+  }, [navGroups]);
+
   const handleToggle = () => {
     if (onToggle) onToggle(nextState);
   };
 
-  const renderNavItem = (item) => {
+  const toggleGroup = (groupId) => {
+    setExpandedGroups((prev) => ({
+      ...prev,
+      [groupId]: !prev[groupId],
+    }));
+  };
+
+  const renderSubItem = (item) => {
     const isSelected = Boolean(item.selected);
-    const countVariant = item.countVariant || 'default';
     return (
       <button
         key={item.id}
-        className={`side-nav-item ${isSelected ? 'is-selected' : ''}`}
+        className={`side-nav-subitem ${isSelected ? 'is-selected' : ''}`}
         onClick={item.onClick}
         aria-label={item.label}
       >
-        <span className="side-nav-item-leading">
-          <Icon name={item.icon} size={20} />
-        </span>
-        {isExpanded && <span className="side-nav-item-label">{item.label}</span>}
-        {item.count !== undefined && (
-          <Counter
-            count={item.count}
-            variant={countVariant}
-            className={isExpanded ? '' : 'side-nav-item-counter-collapsed'}
-          />
-        )}
+        <Icon name={item.icon || 'Circle'} size={18} />
+        <span className="side-nav-subitem-label">{item.label}</span>
       </button>
     );
   };
 
-  const renderActivityItem = (item) => (
-    <div key={item.id} className="side-nav-activity-item">
-      <span className="side-nav-activity-label">{item.label}</span>
-      <Counter count={item.count} />
-    </div>
-  );
+  const renderGroup = (group) => {
+    const isGroupExpanded = Boolean(expandedGroups[group.id]);
+    const hasChildren = Array.isArray(group.items) && group.items.length > 0;
+    const isGroupActive = hasChildren
+      ? group.items.some((item) => item.selected)
+      : Boolean(group.selected);
 
-  const renderStat = (stat) => (
-    <div key={stat.id} className="side-nav-stat-card">
-      <div className="side-nav-stat-icon">
-        <Icon name={stat.icon} size={20} />
+    return (
+      <div key={group.id} className="side-nav-group">
+        <button
+          className={`side-nav-group-trigger ${isGroupActive ? 'is-active' : ''}`}
+          onClick={() => (hasChildren ? toggleGroup(group.id) : group.onClick?.())}
+          aria-label={group.label}
+        >
+          <div className="side-nav-group-leading">
+            <Icon name={group.icon || 'Circle'} size={20} />
+            {isExpanded && <span className="side-nav-group-label">{group.label}</span>}
+          </div>
+
+          <div className="side-nav-group-meta">
+            {group.counter !== undefined && (
+              <Counter count={group.counter} variant={group.counterVariant || 'success'} />
+            )}
+            {isExpanded && hasChildren && (
+              <Icon
+                name={isGroupExpanded ? 'ChevronDown' : 'ChevronRight'}
+                size={16}
+                className="side-nav-group-chevron"
+              />
+            )}
+          </div>
+        </button>
+
+        {isExpanded && hasChildren && isGroupExpanded && (
+          <div className="side-nav-subitems" role="group" aria-label={group.label}>
+            <div className="side-nav-rail" aria-hidden="true" />
+            <div className="side-nav-sublist">{group.items.map(renderSubItem)}</div>
+          </div>
+        )}
       </div>
-      <div className="side-nav-stat-content">
-        <p className="side-nav-stat-title">{stat.title}</p>
-        <div className="side-nav-stat-values">
-          <span className="side-nav-stat-value">{stat.value}</span>
-          <span className={`side-nav-stat-trend trend-${stat.trendTone || 'neutral'}`}>
-            {stat.trend}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <aside className={`side-nav ${isExpanded ? 'is-expanded' : 'is-collapsed'} ${className}`.trim()} aria-label="Navigation latérale">
       <div className="side-nav-header">
         <button className="side-nav-toggle" onClick={handleToggle} aria-label="Basculer le menu">
-          <Icon name={isExpanded ? 'chevronLeft' : 'chevronRight'} size={18} />
+          <Icon name={isExpanded ? 'ChevronsLeft' : 'ChevronsRight'} size={18} />
         </button>
       </div>
 
-      <div className="side-nav-section">
+      <div className="side-nav-user-block">
         <div className={`side-nav-user ${!isExpanded ? 'is-compact' : ''}`}>
           <div className="side-nav-avatar" aria-hidden="true">
             <img src={user.avatarUrl} alt={user.name} />
@@ -126,61 +205,33 @@ const SideNav = memo(function SideNav({
         </div>
       </div>
 
-      <div className="side-nav-separator" />
-
-      <nav className="side-nav-section" aria-label="Navigation principale">
-        <div className="side-nav-list">{navItems.map(renderNavItem)}</div>
-      </nav>
-
-      <div className="side-nav-separator" />
-
-      <div className="side-nav-section">
-        <div className="side-nav-activities">
-          <div className="side-nav-activities-header">
-            <div className="side-nav-activities-title">
-              <Icon name="activities" size={20} />
-              {isExpanded && <span>Activités</span>}
-            </div>
-            {isExpanded && (
-              <button className="side-nav-activities-add" aria-label="Ajouter">
-                <Icon name="plus" size={18} />
-              </button>
-            )}
-          </div>
-          {isExpanded ? (
-            <div className="side-nav-activities-list">{activityItems.map(renderActivityItem)}</div>
-          ) : (
-            <div className="side-nav-activities-collapsed">{activityItems.map((item) => renderNavItem({ ...item, icon: 'listTodo' }))}</div>
-          )}
-        </div>
+      <div className="side-nav-content" role="navigation" aria-label="Navigation principale">
+        {navGroups.map(renderGroup)}
       </div>
 
-      {isExpanded && <div className="side-nav-separator" />}
-
-      {isExpanded ? (
-        <div className="side-nav-section side-nav-help" role="group" aria-label="Aide">
+      <div className="side-nav-help-card" role="group" aria-label="Aide">
+        <div className="side-nav-help-head">
           <div className="side-nav-help-icon">
-            <Icon name={help.icon} size={20} />
+            <Icon name={help.icon} size={18} />
           </div>
-          <div className="side-nav-help-content">
-            <p className="side-nav-help-title">{help.title}</p>
-            <p className="side-nav-help-description">{help.description}</p>
-          </div>
+          {isExpanded && (
+            <div className="side-nav-help-text">
+              <p className="side-nav-help-title">{help.title}</p>
+              <p className="side-nav-help-description">{help.description}</p>
+            </div>
+          )}
+        </div>
+        {isExpanded && (
           <button className="side-nav-help-cta" onClick={onHelpClick}>
-            {help.ctaLabel}
+            {help.ctaLabel || 'Voir le guide'}
           </button>
-        </div>
-      ) : (
-        <button className="side-nav-help-fab" onClick={onHelpClick} aria-label="Aide">
-          <Icon name={help.icon} size={18} />
-        </button>
-      )}
-
-      {isExpanded && (
-        <div className="side-nav-section side-nav-stats" aria-label="Statistiques">
-          {stats.map(renderStat)}
-        </div>
-      )}
+        )}
+        {!isExpanded && (
+          <button className="side-nav-help-fab" onClick={onHelpClick} aria-label="Ouvrir l'aide">
+            <Icon name="ChevronRight" size={16} />
+          </button>
+        )}
+      </div>
     </aside>
   );
 });

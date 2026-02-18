@@ -1,0 +1,28 @@
+/* ActionsModal Container */
+.actions-modal {
+    background-color: var(--color-background, #201a25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    width: 1099px;
+    border: 1px solid var(--text-onBackground-10, rgba(251, 251, 254, 0.1));
+    box-shadow: 0px 4px 8px 1px var(--brand-secondary-60, rgba(14, 9, 18, 0.6));
+}
+
+/* Separator between sections */
+.actions-modal-separator {
+    width: 0;
+    height: 87px;
+    border-left: 1px solid var(--text-onBackground-10, rgba(251, 251, 254, 0.1));
+    opacity: 0.5;
+    transform: rotate(90deg);
+}
+
+/* Flex grow for segmented actions */
+.actions-modal > div:nth-child(4) {
+    flex: 1;
+    min-width: 0;
+}

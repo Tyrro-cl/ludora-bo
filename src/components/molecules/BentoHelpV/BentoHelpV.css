@@ -1,0 +1,137 @@
+/* BentoHelpV Container */
+.bento-help-v {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    width: 256px;
+    height: 184px;
+}
+
+.bento-help-v.collapsed {
+    width: auto;
+    height: auto;
+}
+
+/* Main Container */
+.bento-help-v-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding: 16px;
+    width: 100%;
+    flex: 1 0 0;
+    min-height: 0;
+    min-width: 0;
+    justify-content: space-between;
+    z-index: 3;
+}
+
+.collapsed .bento-help-v-container {
+    padding: 4px;
+    gap: 8px;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+}
+
+/* Header Section */
+.bento-help-v-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* Icon */
+.bento-help-v-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: var(--brand-tertiary-10, rgba(251, 251, 254, 0.1));
+    flex-shrink: 0;
+}
+
+.bento-help-v-icon.collapsed-icon {
+    background-color: var(--text-onBackground-10, rgba(251, 251, 254, 0.1));
+}
+
+/* Text Content */
+.bento-help-v-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+    color: white;
+}
+
+.bento-help-v-title {
+    font-family: "Helvetica", sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.bento-help-v-description {
+    font-family: var(--font-complementary, "Lexend Deca", sans-serif);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 19.5px;
+    white-space: pre-wrap;
+    width: 100%;
+}
+
+/* Action Section */
+.bento-help-v-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+/* Background */
+.bento-help-v-background {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    align-items: flex-start;
+    z-index: 1;
+}
+
+.bento-help-v-gradient {
+    flex: 1 0 0;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #2e2a74 0%, #1e1a54 100%);
+    border: 1px solid rgba(151, 71, 255, 0.2);
+    box-shadow:
+        0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.bento-help-v-ellipse {
+    position: absolute;
+    bottom: -125.41px;
+    right: -182.99px;
+    width: 285.994px;
+    height: 255.406px;
+    background: radial-gradient(
+        circle,
+        rgba(79, 209, 197, 0.3) 0%,
+        transparent 70%
+    );
+    filter: blur(60px);
+    opacity: 0.5;
+}

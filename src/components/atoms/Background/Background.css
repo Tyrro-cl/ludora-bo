@@ -1,0 +1,127 @@
+/* Background Root */
+.background-root {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--bg-base, #201a25);
+    border-radius: 8px;
+}
+
+/* Background Inner */
+.background-inner {
+    flex: 1 0 0;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+    border-radius: 8px;
+    background-color: var(--color-background, #403b44);
+}
+
+/* Variant: Login */
+.variant-login {
+    border-color: var(--color-stroke, #2e2c74);
+}
+
+.variant-login .background-inner {
+    opacity: 0;
+}
+
+.variant-login.state-active .background-inner {
+    opacity: 1;
+    background: linear-gradient(
+        135deg,
+        var(--brand-primary-80, rgba(46, 44, 116, 0.8)) 0%,
+        transparent 100%
+    );
+}
+
+/* Variant: Math */
+.variant-math {
+    border-radius: 8px;
+}
+
+.variant-math.state-idle {
+    border-color: transparent;
+}
+
+.variant-math.state-active {
+    border-color: var(--color-stroke, #00b8db);
+}
+
+.variant-math .background-inner {
+    background: linear-gradient(
+        135deg,
+        var(--study-colorcode-math-dark, rgb(43, 127, 255)) 0%,
+        var(--study-colorcode-math-light, rgb(0, 184, 219)) 100%
+    );
+}
+
+.variant-math.state-idle .background-inner {
+    opacity: 0.8;
+}
+
+/* Variant: English */
+.variant-english {
+    border-radius: 8px;
+}
+
+.variant-english.state-idle {
+    border-color: transparent;
+}
+
+.variant-english.state-active {
+    border-color: var(--color-stroke, #f6339a);
+}
+
+.variant-english .background-inner {
+    background: linear-gradient(
+        135deg,
+        var(--study-colorcode-english-dark, rgb(246, 51, 154)) 0%,
+        var(--study-colorcode-english-light, rgb(225, 42, 251)) 100%
+    );
+}
+
+.variant-english.state-idle .background-inner {
+    opacity: 0.8;
+}
+
+/* Variant: French */
+.variant-french {
+    border-radius: 12px;
+}
+
+.variant-french.state-idle {
+    border-color: transparent;
+}
+
+.variant-french.state-active {
+    border-color: var(--color-stroke, #fb2c36);
+}
+
+.variant-french .background-inner {
+    background: linear-gradient(
+        135deg,
+        var(--study-colorcode-french-light, rgb(255, 105, 0)) 0%,
+        var(--study-colorcode-french-dark, rgb(251, 44, 54)) 100%
+    );
+    border-radius: 12px;
+}
+
+.variant-french.state-idle .background-inner {
+    opacity: 0.8;
+}
+
+/* Variant: Default */
+.variant-default {
+    border-color: var(--bg-base, #201a25);
+}
+
+.variant-default.state-idle .background-inner {
+    background-color: var(--color-background, #403b44);
+}
+
+.variant-default.state-active .background-inner {
+    background-color: var(--bg-light, #2a272d);
+}

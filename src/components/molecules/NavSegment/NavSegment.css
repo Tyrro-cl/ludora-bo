@@ -1,0 +1,45 @@
+.nav-segment {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.nav-segment.is-collapsed {
+    height: 40px;
+}
+
+.nav-segment-children {
+    display: flex;
+    gap: 4px;
+    align-items: flex-start;
+    opacity: 0.8;
+    padding-left: var(--text-size-3, 16px);
+    position: relative;
+    flex-shrink: 0;
+    width: 278px;
+}
+
+.nav-segment-children-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-left: var(--text-size-2, 12px);
+    position: relative;
+    flex-shrink: 0;
+    width: 264px;
+}
+
+.nav-segment-children-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.nav-segment-child-button {
+    width: 264px;
+}

@@ -1,8 +1,7 @@
 import { useAuth } from '../../context/AuthContext';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../components/atoms/Button/Button';
-import CallToAction from '../../components/atoms/CallToAction/CallToAction';
+import Icon from '../../components/atoms/Icon/Icon';
 import DashboardLayout from '../../components/organisms/DashboardLayout/DashboardLayout';
 import axiosInstance from '../../services/authService';
 import './HomePage.css';
@@ -17,6 +16,7 @@ const HomePage = () => {
     themes: 0
   });
   const [loading, setLoading] = useState(true);
+  const [now, setNow] = useState(new Date());
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -73,6 +73,14 @@ const HomePage = () => {
     fetchStats();
   }, []);
 
+  useEffect(() => {
+    const clockTimer = setInterval(() => {
+      setNow(new Date());
+    }, 60000);
+
+    return () => clearInterval(clockTimer);
+  }, []);
+
   const navItems = [
     { id: 'home', label: 'Accueil', icon: 'home', selected: true, onClick: () => navigate('/home/overview') },
     { id: 'students', label: "Tableau d'Éleves", icon: 'users', onClick: () => navigate('/notes') },
@@ -91,119 +99,213 @@ const HomePage = () => {
     );
   }
 
+  const quickActions = [
+    {
+      id: 'notes',
+      title: 'Voir les Notes',
+      subtitle: '45 notes à corriger',
+      icon: 'book',
+      tone: 'purple',
+      onClick: () => navigate('/notes')
+    },
+    {
+      id: 'alerts',
+      title: 'Voir Urgences',
+      subtitle: '6 élèves en risque',
+      icon: 'circle-alert',
+      tone: 'red',
+      onClick: () => navigate('/notes')
+    },
+    {
+      id: 'messages',
+      title: 'Messages Parents',
+      subtitle: '12 non lus',
+      icon: 'message-square',
+      tone: 'orange',
+      onClick: () => navigate('/messages')
+    },
+    {
+      id: 'publish',
+      title: 'Publier Activité',
+      subtitle: '28 brouillons',
+      icon: 'send',
+      tone: 'green',
+      onClick: () => navigate('/activities')
+    },
+    {
+      id: 'attendance',
+      title: 'Présences du Jour',
+      subtitle: 'Majeure absences',
+      icon: 'clipboard-list',
+      tone: 'yellow',
+      onClick: () => navigate('/notes')
+    },
+    {
+      id: 'planning',
+      title: 'Planning Semaine',
+      subtitle: '4 activités prévues',
+      icon: 'calendar-days',
+      tone: 'neutral',
+      onClick: () => navigate('/activities')
+    }
+  ];
+
+  const aggregateMetrics = [
+    { id: 'eleves', label: 'Élèves Total', value: stats.students },
+    { id: 'note', label: 'Notes Total', value: '96.5 %' },
+    { id: 'themes', label: 'Thèmes Total', value: stats.themes },
+    { id: 'moyenne', label: 'Élèves Total', value: '14,3 / 20' }
+  ];
+
+  const detailMetrics = [
+    { id: 'a', title: 'Total Élèves', value: stats.students, trend: '+1.2%', tone: 'positive' },
+    { id: 'b', title: 'Total Élèves', value: 88, trend: '-4%', tone: 'warning' },
+    { id: 'c', title: 'Total Élèves', value: 203, trend: '-1.5%', tone: 'danger' },
+    { id: 'd', title: 'Total Élèves', value: 203, trend: '+2%', tone: 'positive' }
+  ];
+
+  const recentActivities = [
+    { id: 1, title: 'Notes de Mathématiques publiées', meta: 'CM2A • Il y a 2h', icon: 'book-open', tone: 'yellow' },
+    { id: 2, title: 'Message de Mme Martin (parent)', meta: 'Lucas Martin • Il y a 3h', icon: 'message-square', tone: 'purple' },
+    { id: 3, title: 'Nouvelle activité “Dictée 15” créée', meta: 'CM1B • Il y a 5h', icon: 'notebook-pen', tone: 'green' },
+    { id: 4, title: 'Élève en risque: Sophie Bernard', meta: 'CM1A • Il y a 1j', icon: 'triangle-alert', tone: 'red' }
+  ];
+
+  const deadlines = [
+    { id: 1, title: 'Évaluation de Français', classes: 'CM1A, CM1B', date: '15 Jan 2026', level: 'Urgent' },
+    { id: 2, title: 'Rencontre parents-professeurs', classes: 'Toutes classes', date: '18 Jan 2026', level: 'Moyen' },
+    { id: 3, title: 'Correction des devoirs', classes: 'CM2A', date: '20 Jan 2026', level: 'Normal' }
+  ];
+
+  const todayLabel = new Intl.DateTimeFormat('fr-FR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(now);
+
+  const hourLabel = new Intl.DateTimeFormat('fr-FR', {
+    hour: '2-digit',
+    minute: '2-digit'
+  }).format(now);
+
   return (
     <DashboardLayout user={user} onLogout={logout} navItems={navItems} selectedNavItem="home">
       <div className="home-page">
-        <div className="home-subpage-header">
+        <div className="home-toolbar">
+          <p className="home-toolbar-breadcrumb">
+            <span>Crumb1</span>
+            <span className="home-breadcrumb-separator">/</span>
+            <span>ItemSelected</span>
+          </p>
+
+          <label className="home-toolbar-search" aria-label="Recherche globale">
+            <Icon name="search" size={14} color="var(--color-text-on-dark-60)" />
+            <input type="text" placeholder="Recherchez... (Activities, TP, Dictée)" />
+          </label>
+        </div>
+
+        <section className="home-welcome-banner">
           <div>
-            <p className="home-subtitle">Accueil</p>
-            <h1 className="home-title">Vue d'ensemble</h1>
-            <p className="home-description">Synthèse de vos classes, élèves et activités.</p>
+            <h1>Bon retour, {user?.personalInfo?.firstName || 'M. Dupont'}!</h1>
+            <p>Voici un aperçu de votre journée</p>
           </div>
-          <div className="home-subpage-actions">
-            <Button variant="secondary" size="medium" onClick={() => navigate('/notes')}>
-              Voir les élèves
-            </Button>
-            <Button variant="primary" size="medium" onClick={() => navigate('/activities')}>
-              Créer une activité
-            </Button>
+          <div className="home-welcome-right">
+            <span>{todayLabel}</span>
+            <strong>{hourLabel}</strong>
           </div>
-        </div>
+        </section>
 
-        <div className="home-content">
-          <section className="home-activity-section">
-            <div className="home-activity-header">
-              <h2 className="home-activity-title">Activités récentes</h2>
-              <CallToAction variant="primary" onClick={() => navigate('/activities')}>
-                Voir toutes les activités
-              </CallToAction>
+        <section className="home-panel">
+          <div className="home-panel-header">
+            <div>
+              <h2>Actions Rapides</h2>
+              <p>Accédez direct à vos tâches urgentes</p>
             </div>
-            <p className="home-activity-subtitle">
-              Gérez vos activités et suivez les progrès de vos élèves
-            </p>
-          </section>
-
-          <div className="home-stats-grid">
-            <button className="home-stat-card" onClick={() => navigate('/activities')}>
-              <div className="home-stat-header">
-                <div className="home-stat-icon home-stat-icon--purple">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C10.9 2 10 2.9 10 4V8H14V4C14 2.9 13.1 2 12 2ZM6 8H4C2.9 8 2 8.9 2 10V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V10C22 8.9 21.1 8 20 8H18V4C18 1.8 16.2 0 14 0H10C7.8 0 6 1.8 6 4V8Z"/>
-                  </svg>
-                </div>
-                <h3 className="home-stat-title">Classes</h3>
-              </div>
-              <p className="home-stat-value">{stats.classes}</p>
-              <p className="home-stat-description">Classes actives</p>
-            </button>
-            
-            <button className="home-stat-card" onClick={() => navigate('/activities')}>
-              <div className="home-stat-header">
-                <div className="home-stat-icon home-stat-icon--blue">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M16 11C17.66 11 18.99 9.66 18.99 8C18.99 6.34 17.66 5 16 5C14.34 5 13 6.34 13 8C13 9.66 14.34 11 16 11ZM8 11C9.66 11 10.99 9.66 10.99 8C10.99 6.34 9.66 5 8 5C6.34 5 5 6.34 5 8C5 9.66 6.34 11 8 11ZM8 13C5.67 13 1 14.17 1 16.5V19H15V16.5C15 14.17 10.33 13 8 13ZM16 13C15.71 13 15.38 13.02 15.03 13.05C16.19 13.89 17 15.02 17 16.5V19H23V16.5C23 14.17 18.33 13 16 13Z"/>
-                  </svg>
-                </div>
-                <h3 className="home-stat-title">Élèves</h3>
-              </div>
-              <p className="home-stat-value">{stats.students}</p>
-              <p className="home-stat-description">Élèves inscrits</p>
-            </button>
-            
-            <button className="home-stat-card" onClick={() => navigate('/activities')}>
-              <div className="home-stat-header">
-                <div className="home-stat-icon home-stat-icon--green">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
-                    <path d="M2 17L12 22L22 17V11L12 16L2 11V17Z"/>
-                  </svg>
-                </div>
-                <h3 className="home-stat-title">Activités</h3>
-              </div>
-              <p className="home-stat-value">{stats.activities}</p>
-              <p className="home-stat-description">Activités disponibles</p>
-            </button>
-            
-            <button className="home-stat-card" onClick={() => navigate('/activities')}>
-              <div className="home-stat-header">
-                <div className="home-stat-icon home-stat-icon--orange">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 3H14.82C14.4 1.84 13.3 1 12 1C10.7 1 9.6 1.84 9.18 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM12 3C12.55 3 13 3.45 13 4C13 4.55 12.55 5 12 5C11.45 5 11 4.55 11 4C11 3.45 11.45 3 12 3ZM10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9L10 17Z"/>
-                  </svg>
-                </div>
-                <h3 className="home-stat-title">Thèmes</h3>
-              </div>
-              <p className="home-stat-value">{stats.themes}</p>
-              <p className="home-stat-description">Thèmes pédagogiques</p>
-            </button>
           </div>
 
-          <section className="home-quick-actions">
-            <h2 className="home-section-title">Actions rapides</h2>
-            <div className="home-actions-grid">
-              <button className="home-action-card" onClick={() => navigate('/activities')}>
-                <div className="home-action-icon">📚</div>
-                <h3>Gérer les activités</h3>
-                <p>Consultez et organisez toutes vos activités pédagogiques</p>
+          <div className="home-quick-actions-grid">
+            {quickActions.map((action) => (
+              <button
+                key={action.id}
+                className={`home-quick-action-card home-quick-action-card--${action.tone}`}
+                onClick={action.onClick}
+              >
+                <div className="home-quick-action-icon">
+                  <Icon name={action.icon} size={14} color="var(--color-text-on-dark-100)" />
+                </div>
+                <h3>{action.title}</h3>
+                <p>{action.subtitle}</p>
               </button>
-              <button className="home-action-card">
-                <div className="home-action-icon">📝</div>
-                <h3>Créer une classe</h3>
-                <p>Ajoutez une nouvelle classe à votre école</p>
-              </button>
-              <button className="home-action-card">
-                <div className="home-action-icon">👥</div>
-                <h3>Inscrire des élèves</h3>
-                <p>Ajoutez de nouveaux élèves à vos classes</p>
-              </button>
-              <button className="home-action-card">
-                <div className="home-action-icon">📊</div>
-                <h3>Voir les statistiques</h3>
-                <p>Consultez les progrès de vos élèves</p>
-              </button>
+            ))}
+          </div>
+
+          <div className="home-aggregate-metrics">
+            {aggregateMetrics.map((metric) => (
+              <div key={metric.id} className="home-aggregate-item">
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="home-detail-metrics-grid">
+          {detailMetrics.map((metric) => (
+            <article key={metric.id} className="home-detail-card">
+              <div className="home-detail-top">
+                <span>{metric.title}</span>
+                <span className={`home-trend home-trend--${metric.tone}`}>{metric.trend}</span>
+              </div>
+              <div className="home-detail-bottom">
+                <strong>{metric.value}</strong>
+              </div>
+            </article>
+          ))}
+        </section>
+
+        <section className="home-bottom-grid">
+          <article className="home-panel home-panel--activities">
+            <div className="home-panel-title-row">
+              <h2>Activité Récente</h2>
             </div>
-          </section>
-        </div>
+
+            <div className="home-recent-list">
+              {recentActivities.map((activity) => (
+                <div key={activity.id} className="home-recent-item">
+                  <span className={`home-recent-item-icon home-recent-item-icon--${activity.tone}`}>
+                    <Icon name={activity.icon} size={12} color="var(--color-text-on-dark-100)" />
+                  </span>
+                  <div>
+                    <p>{activity.title}</p>
+                    <small>{activity.meta}</small>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <aside className="home-panel home-panel--deadlines">
+            <div className="home-panel-title-row">
+              <h2>Échéances</h2>
+            </div>
+
+            <div className="home-deadlines-list">
+              {deadlines.map((deadline) => (
+                <article key={deadline.id} className="home-deadline-card">
+                  <p className="home-deadline-title">{deadline.title}</p>
+                  <p className="home-deadline-classes">{deadline.classes}</p>
+                  <div className="home-deadline-footer">
+                    <span>{deadline.date}</span>
+                    <span className={`home-priority home-priority--${deadline.level.toLowerCase()}`}>
+                      {deadline.level}
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </aside>
+        </section>
       </div>
     </DashboardLayout>
   );

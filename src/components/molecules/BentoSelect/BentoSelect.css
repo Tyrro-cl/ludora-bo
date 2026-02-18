@@ -1,0 +1,187 @@
+/* BentoSelect Component Styles */
+
+.bentoselect-root {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    isolation: isolate;
+    position: relative;
+}
+
+.bentoselect-root.state-hover {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+}
+
+/* Default text-position=Default layout */
+.bentoselect-root.position-default .bentoselect-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.bentoselect-root.position-default .bentoselect-slot-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.bentoselect-root.position-default .bentoselect-text {
+    font-family: var(--font, "Lexend Deca", sans-serif);
+    font-weight: bold;
+    font-size: var(--size-text-size-4-5, 24px);
+    line-height: 1.4;
+    color: var(--color-slot1-text, rgba(251, 251, 254, 0.8));
+    margin: 0;
+}
+
+.bentoselect-root.position-default .bentoselect-slot-main {
+    display: flex;
+    gap: 16px;
+    height: 298px;
+    width: 278px;
+    align-items: center;
+    justify-content: center;
+    padding: 81px 112px;
+    position: relative;
+    border-radius: 12px;
+    isolation: isolate;
+    z-index: 1;
+}
+
+.bentoselect-root.position-default .bentoselect-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+/* Inside text-position layout */
+.bentoselect-root.position-inside .bentoselect-container {
+    display: flex;
+    flex-direction: column;
+    height: 298px;
+    width: 278px;
+    isolation: isolate;
+    align-items: flex-start;
+    position: relative;
+}
+
+.bentoselect-root.position-inside .bentoselect-slot-main {
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    gap: var(--size-text-size-3, 16px);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 0;
+    padding: var(--size-text-size-4-5, 24px) 0;
+    position: relative;
+    border-radius: 12px;
+    isolation: isolate;
+    z-index: 1;
+}
+
+.bentoselect-root.position-inside .bentoselect-slot-top-inside,
+.bentoselect-root.position-inside .bentoselect-slot-bottom-inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.bentoselect-root.position-inside .bentoselect-slot-top-inside {
+    z-index: 4;
+}
+
+.bentoselect-root.position-inside .bentoselect-slot-bottom-inside {
+    z-index: 2;
+}
+
+.bentoselect-root.position-inside .bentoselect-text-inside {
+    font-family: "Lexend Deca", sans-serif;
+    font-weight: bold;
+    font-size: var(--size-text-size-4, 20px);
+    line-height: 1.4;
+    color: var(--color-slot1-text, rgba(251, 251, 254, 0.8));
+    margin: 0;
+}
+
+.bentoselect-root.position-inside .bentoselect-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+}
+
+/* Background styles */
+.bentoselect-background {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    border: 3px solid var(--bg-base, #201a25);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.bentoselect-background-inner {
+    flex: 1 0 0;
+    height: 100%;
+    min-height: 1px;
+    min-width: 1px;
+    background: var(--color-background, #403b44);
+    border-radius: 8px;
+}
+
+/* State: Default */
+.bentoselect-root.state-default .bentoselect-background-inner {
+    background: var(--color-background, #403b44);
+}
+
+/* State: Hover */
+.bentoselect-root.state-hover .bentoselect-background-inner {
+    background: var(--bg-light, #2a272d);
+}
+
+/* State: Selected - slightly larger border */
+.bentoselect-root.state-selected.position-default .bentoselect-background {
+    border-width: 3.15px;
+    inset: -7px -6.9px -7.9px -7px;
+    border-radius: 8.4px;
+}
+
+.bentoselect-root.state-selected.position-default
+    .bentoselect-background-inner {
+    background: var(--bg-light, #2a272d);
+    border-radius: 8.4px;
+}
+
+.bentoselect-root.state-selected.position-inside .bentoselect-background {
+    border-width: 3.307px;
+    inset: -7px -6.9px -7.9px -7px;
+    border-radius: 8.82px;
+}
+
+.bentoselect-root.state-selected.position-inside .bentoselect-background-inner {
+    background: var(--bg-light, #2a272d);
+    border-radius: 8.82px;
+}
+
+/* Hover effects */
+.bentoselect-root.state-hover:hover .bentoselect-background-inner {
+    background: var(--bg-light, #2a272d);
+}

@@ -63,6 +63,28 @@ const UICheckerPage = () => {
               <div className="side-nav-preview">
                 <component.component state="expanded" />
               </div>
+            ) : component.id === "search" ? (
+              <component.component />
+            ) : component.id === "actionCard" ? (
+              <component.component />
+            ) : component.id === "contentCard" ? (
+              <component.component />
+            ) : component.id === "header" ? (
+              <div style={{ width: '100%' }}>
+                <component.component />
+              </div>
+            ) : component.id === "activitySection" ? (
+              <div style={{ width: '100%' }}>
+                <component.component />
+              </div>
+            ) : component.id === "activitiesTableByTheme" ? (
+              <div style={{ width: '100%' }}>
+                <component.component />
+              </div>
+            ) : component.id === "repassages" ? (
+              <div style={{ width: '100%' }}>
+                <component.component />
+              </div>
             ) : component.id === "notesPage" ? (
               <div className="notes-page-preview">
                 <div style={{ transform: 'scale(0.15)', transformOrigin: 'top left', width: '666%', height: '400px', overflow: 'hidden' }}>

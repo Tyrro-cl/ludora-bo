@@ -1,0 +1,120 @@
+.activities-table {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 24px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
+}
+
+.activities-table__header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.activities-table__title {
+    font-family: "Helvetica", sans-serif;
+    font-size: 18px;
+    color: #2d3748;
+    margin: 0;
+}
+
+.activities-table__subtitle {
+    font-family: "Helvetica", sans-serif;
+    font-size: 14px;
+    color: #68d391;
+    margin: 4px 0 0 0;
+}
+
+.activities-table__tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
+}
+
+.activities-table__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1.4fr 0.7fr 1fr 0.7fr 1fr;
+    row-gap: 12px;
+    column-gap: 8px;
+}
+
+.activities-table__head {
+    font-family: "Helvetica", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #a0aec0;
+    text-transform: none;
+}
+
+.activities-table__row {
+    display: contents;
+}
+
+.activities-table__cell {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    color: #2d3748;
+    padding: 10px 0;
+    border-bottom: 1px solid #edf2f7;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.activities-table__cell--title {
+    font-weight: 600;
+}
+
+.activities-table__cell--actions {
+    gap: 10px;
+}
+
+.activities-table__action {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    color: #a0aec0;
+}
+
+.activities-table__action:hover {
+    color: #4318ff;
+    border-color: #cbd5e1;
+}
+
+.activities-table__avatars {
+    display: flex;
+    align-items: center;
+}
+
+.activities-table__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffffff;
+    margin-left: -8px;
+}
+
+.activities-table__avatar:first-child {
+    margin-left: 0;
+}
+
+@media (max-width: 1024px) {
+    .activities-table__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .activities-table__head,
+    .activities-table__cell {
+        padding: 8px 0;
+    }
+}

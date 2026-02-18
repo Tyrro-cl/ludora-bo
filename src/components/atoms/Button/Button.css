@@ -1,59 +1,200 @@
-.btn {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: inherit;
+/* Button Root */
+.button-root {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-complementary, "Lexend Deca", sans-serif);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+/* Button Container */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px 8px;
+    width: 100%;
+    height: 100%;
 }
 
-.btn-small {
-    padding: 8px 16px;
+.button-inner {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.button-label {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-onBackground-100, #fbfbfe);
+    white-space: nowrap;
+}
+
+.button-icon-start,
+.button-icon-end {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+/* Size Variants */
+.button-small {
+    width: 164px;
+    height: 40px;
+    min-height: 40px;
+}
+
+.button-small .button-label {
     font-size: 14px;
 }
 
-.btn-medium {
-    padding: 12px 24px;
+.button-medium {
+    width: 205px;
+    height: 50px;
+    min-height: 50px;
+}
+
+.button-medium .button-label {
     font-size: 16px;
 }
 
-.btn-large {
-    padding: 16px 32px;
+.button-large {
+    width: 246px;
+    height: 60px;
+    min-height: 60px;
+}
+
+.button-large .button-label {
     font-size: 18px;
 }
 
-.btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-primary-contrast);
+.button-xlarge {
+    width: 287px;
+    height: 70px;
+    min-height: 70px;
 }
 
-.btn-primary:hover:not(:disabled) {
-    background-color: var(--color-primary-hover);
+.button-xlarge .button-label {
+    font-size: 18px;
+}
+
+.button-xxlarge {
+    width: 328px;
+    height: 80px;
+    min-height: 80px;
+}
+
+.button-xxlarge .button-label {
+    font-size: 20px;
+}
+
+/* Variant: Primary */
+.button-primary {
+    background-color: var(--brand-primary-80, rgba(46, 44, 116, 0.8));
+    border: 1px solid var(--brand-primary-30, rgba(46, 44, 116, 0.3));
+    color: var(--text-onBackground-100, #fbfbfe);
+}
+
+.button-primary::after {
+    content: "";
+    position: absolute;
+    inset: -4px -8px;
+    background: transparent;
+    border-radius: 4px;
+    box-shadow: inset 0px -1px 1.4px 0px rgba(113, 113, 113, 0.2);
+    pointer-events: none;
+}
+
+/* State: Idle */
+.button-primary.button-state-Idle {
+    background-color: var(--brand-primary-80, rgba(46, 44, 116, 0.8));
+    border-color: var(--brand-primary-30, rgba(46, 44, 116, 0.3));
+}
+
+/* State: Hover */
+.button-primary.button-state-Hover:not(:disabled) {
+    background-color: var(--brand-primary-90, rgba(46, 44, 116, 0.9));
+    border-color: var(--brand-primary-40, rgba(46, 44, 116, 0.4));
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(116, 66, 200, 0.3);
 }
 
-.btn-secondary {
-    background-color: var(--color-surface-soft-2);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
+/* State: Selected */
+.button-primary.button-state-Selected {
+    background-color: var(--brand-primary-100, rgb(46, 44, 116));
+    border-color: var(--brand-primary-50, rgba(46, 44, 116, 0.5));
 }
 
-.btn-secondary:hover:not(:disabled) {
-    background-color: var(--color-surface);
+/* State: Disabled */
+.button-primary.button-state-Disabled,
+.button-root:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-.btn-full-width {
-    width: 100%;
+/* Variant: Secondary */
+.button-secondary {
+    background-color: var(--brand-secondary-80, rgba(179, 152, 222, 0.8));
+    border: 1px solid var(--brand-secondary-30, rgba(179, 152, 222, 0.3));
+    color: var(--text-onBackground-100, #fbfbfe);
+}
+
+.button-secondary::after {
+    content: "";
+    position: absolute;
+    inset: -4px -8px;
+    background: transparent;
+    border-radius: 4px;
+    box-shadow: inset 0px -1px 1.4px 0px rgba(113, 113, 113, 0.2);
+    pointer-events: none;
+}
+
+.button-secondary.button-state-Idle {
+    background-color: var(--brand-secondary-80, rgba(179, 152, 222, 0.8));
+    border-color: var(--brand-secondary-30, rgba(179, 152, 222, 0.3));
+}
+
+.button-secondary.button-state-Hover:not(:disabled) {
+    background-color: var(--brand-secondary-90, rgba(179, 152, 222, 0.9));
+    border-color: var(--brand-secondary-40, rgba(179, 152, 222, 0.4));
+    transform: translateY(-1px);
+}
+
+.button-secondary.button-state-Selected {
+    background-color: var(--brand-secondary-100, rgb(179, 152, 222));
+    border-color: var(--brand-secondary-50, rgba(179, 152, 222, 0.5));
+}
+
+/* Variant: Tertiary */
+.button-tertiary {
+    background-color: transparent;
+    border: 1px solid var(--brand-tertiary-30, rgba(205, 193, 237, 0.3));
+    color: var(--text-onBackground-100, #fbfbfe);
+}
+
+.button-tertiary.button-state-Idle {
+    background-color: transparent;
+    border-color: var(--brand-tertiary-30, rgba(205, 193, 237, 0.3));
+}
+
+.button-tertiary.button-state-Hover:not(:disabled) {
+    background-color: var(--brand-tertiary-20, rgba(205, 193, 237, 0.2));
+    border-color: var(--brand-tertiary-40, rgba(205, 193, 237, 0.4));
+    transform: translateY(-1px);
+}
+
+.button-tertiary.button-state-Selected {
+    background-color: var(--brand-tertiary-30, rgba(205, 193, 237, 0.3));
+    border-color: var(--brand-tertiary-50, rgba(205, 193, 237, 0.5));
 }

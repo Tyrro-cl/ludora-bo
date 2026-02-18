@@ -8,10 +8,12 @@ const Input = ({
   placeholder,
   required = false,
   disabled = false,
-  error 
+  error,
+  className = '',
+  wrapperClassName = '',
 }) => {
   return (
-    <div className="input-wrapper">
+    <div className={`input-wrapper ${wrapperClassName}`.trim()}>
       <input
         type={type}
         name={name}
@@ -20,7 +22,7 @@ const Input = ({
         placeholder={placeholder}
         required={required}
         disabled={disabled}
-        className={`input ${error ? 'input-error' : ''}`}
+        className={`input ${error ? 'input-error' : ''} ${className}`.trim()}
       />
       {error && <span className="input-error-message">{error}</span>}
     </div>
