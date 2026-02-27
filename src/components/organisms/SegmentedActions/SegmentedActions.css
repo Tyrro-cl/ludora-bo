@@ -1,6 +1,6 @@
 /* SegmentedActions Container */
 .segmented-actions {
-    background-color: var(--text-onBackground-10, rgba(251, 251, 254, 0.1));
+    background-color: var(--color-text-on-dark-10);
     display: flex;
     align-items: flex-start;
     justify-content: space-between;

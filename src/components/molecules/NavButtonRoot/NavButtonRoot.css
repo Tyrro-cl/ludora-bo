@@ -94,11 +94,12 @@
 
 /* Item label styling */
 .nav-button-label {
+    order: 3;
     font-family: var(--font-complementary, "Lexend Deca", sans-serif);
     font-size: var(--text-size-3, 16px);
     font-weight: 400;
     line-height: 1.5;
-    color: var(--color-slot3-text, rgba(251, 251, 254, 0.6));
+    color: var(--color-slot3-text);
     white-space: nowrap;
     flex-shrink: 1;
     min-width: 0;

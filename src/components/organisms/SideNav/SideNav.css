@@ -1,56 +1,82 @@
+/* ── SideNav v2 ───────────────────────────────────────────── */
+
 .side-nav {
     position: relative;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-    gap: 12px;
     width: 272px;
-    min-height: 100vh;
-    padding: 16px 16px 20px 16px;
+    height: 100%;
+    padding: 32px 0 0 0;
     background: var(--color-bg-dark-light, #2a272d);
-    border-right: 1px solid var(--color-bg-dark-base, #201a25);
+    border-right: 1px solid var(--color-text-on-dark-30, rgba(251, 251, 254, 0.3));
     color: var(--color-text-on-dark-80, rgba(251, 251, 254, 0.8));
+    isolation: isolate;
 }
 
 .side-nav.is-collapsed {
-    width: 88px;
-    padding: 16px 12px;
+    width: 86px;
     align-items: center;
 }
+
+/* Top section: header, user, content, separator — help stays at bottom */
+.side-nav-top {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ── Toggle button ────────────────────────────────────────── */
 
 .side-nav-header {
     display: flex;
     justify-content: flex-end;
+    padding: 0 8px;
+    flex-shrink: 0;
 }
 
 .side-nav-toggle {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    border: 1px solid var(--color-border-soft, rgba(255, 255, 255, 0.08));
-    background: transparent;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-text-on-dark-100, #fbfbfe);
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
     cursor: pointer;
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .side-nav-toggle:hover {
-    background: var(--color-surface-soft, rgba(255, 255, 255, 0.03));
-    transform: translateY(-1px);
+    color: var(--color-text-on-dark-100, #fbfbfe);
 }
 
+/* ── User / Avatar block ──────────────────────────────────── */
+
 .side-nav-user-block {
-    padding: 0 4px 4px;
+    padding: 0 12px;
+    flex-shrink: 0;
+}
+
+.side-nav.is-collapsed .side-nav-user-block {
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .side-nav-user {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+    max-height: 56px;
+    min-height: 32px;
 }
 
 .side-nav-user.is-compact {
@@ -63,8 +89,9 @@
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
     flex-shrink: 0;
+    background: var(--color-brand-alternate, #f84);
+    box-shadow: 0 3.5px 5.5px rgba(0, 0, 0, 0.02);
 }
 
 .side-nav-avatar img {
@@ -76,264 +103,434 @@
 .side-nav-user-meta {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    line-height: 1.1;
 }
 
 .side-nav-user-name {
     font-family: "Lexend Deca", var(--font-complementary, sans-serif);
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: var(--avatar-name, 20px);
     color: var(--color-text-on-dark-80, rgba(251, 251, 254, 0.8));
+    text-transform: capitalize;
 }
 
 .side-nav-user-role {
     font-family: "Lexend Deca", var(--font-complementary, sans-serif);
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
+    font-weight: 300;
+    font-size: var(--avatar-position, 16px);
+    color: var(--color-text-on-dark-100, #fbfbfe);
 }
+
+/* ── Nav content area ─────────────────────────────────────── */
 
 .side-nav-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     flex: 1;
+    overflow-x: clip;
     overflow-y: auto;
-    padding-right: 4px;
+    padding: 0 4px 0 12px;
+    min-height: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
 }
 
-.side-nav-group {
+.side-nav-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.side-nav-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.side-nav-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.side-nav-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.side-nav.is-collapsed .side-nav-content {
+    padding: 0 4px 0 12px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* ── NavSegment ───────────────────────────────────────────── */
+
+.side-nav-segment {
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
-
-.side-nav-group-trigger {
+    padding-left: 8px;
+    overflow: clip;
     width: 100%;
-    border: none;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    padding: 8px;
-    border-radius: 8px;
-    color: inherit;
-    cursor: pointer;
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
 }
 
-.side-nav-group-trigger:hover {
-    background: var(--color-surface-soft, rgba(255, 255, 255, 0.04));
-}
-
-.side-nav-group-trigger.is-active {
-    background: var(--color-brand-primary-10, rgba(46, 44, 116, 0.1));
-    color: var(--color-text-on-dark-100, #fbfbfe);
-}
-
-.side-nav-group-leading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-}
-
-.side-nav-group-label {
-    font-family: "Lexend Deca", var(--font-complementary, sans-serif);
-    font-weight: 500;
-    font-size: 16px;
-    color: var(--color-text-on-dark-80, rgba(251, 251, 254, 0.8));
-}
-
-.side-nav-group-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.side-nav-group-chevron {
-    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
-}
-
-.side-nav-subitems {
-    display: flex;
-    gap: 8px;
+.side-nav.is-collapsed .side-nav-segment {
+    gap: 16px;
     padding-left: 8px;
 }
 
-.side-nav-rail {
-    width: 2px;
-    border-radius: 2px;
-    background: var(--color-border-soft, rgba(255, 255, 255, 0.08));
+/* ── navButton (.navButtonRoot) ────────────────────────────── */
+
+.side-nav-btn-root {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    overflow: clip;
+    isolation: isolate;
+    transition: color 0.2s ease;
+}
+
+.side-nav.is-collapsed .side-nav-btn-root {
+    padding: 0;
+}
+
+.side-nav-btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.side-nav.is-collapsed .side-nav-btn-content {
+    align-items: flex-end;
+    padding: 4px;
+}
+
+.side-nav-btn-leading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.side-nav.is-collapsed .side-nav-btn-leading {
+    flex: initial;
+}
+
+.side-nav-btn-icon-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.side-nav.is-collapsed .side-nav-btn-icon-group {
+    gap: 2px;
+}
+
+.side-nav-btn-label {
+    font-family: "Lexend Deca", var(--font-complementary, sans-serif);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
+    white-space: nowrap;
+}
+
+.side-nav-btn-root.is-active .side-nav-btn-label {
+    color: var(--color-text-on-dark-100, #fbfbfe);
+}
+
+.side-nav-btn-root.is-active .icon {
+    color: var(--color-text-on-dark-100, #fbfbfe);
+}
+
+.side-nav-btn-root:not(.is-active) .icon {
+    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
+}
+
+.side-nav-btn-trailing {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.side-nav-btn-chevron {
+    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
+}
+
+/* navButton background layer */
+.side-nav-btn-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: transparent;
+    z-index: 1;
+    transition: background 0.2s ease;
+}
+
+.side-nav-btn-root:hover .side-nav-btn-bg {
+    background: var(--color-surface-soft, rgba(255, 255, 255, 0.04));
+}
+
+.side-nav-btn-root.is-active .side-nav-btn-bg {
+    background: var(--color-brand-primary, #2e2c74);
+}
+
+/* ── Status badge (StatusRoot compact) ────────────────────── */
+
+.side-nav-badge.status-root {
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+/* ── NavItemsContainer (expandable children) ─────────────── */
+
+.side-nav-items-container {
+    display: flex;
+    gap: 4px;
+    align-items: stretch;
+    padding-left: 16px;
+    opacity: 0.8;
+    width: 100%;
+}
+
+.side-nav-line-indicator {
+    flex-shrink: 0;
+    align-self: stretch;
 }
 
 .side-nav-sublist {
     display: flex;
     flex-direction: column;
-    gap: 6px;
     width: 100%;
 }
 
-.side-nav-subitem {
-    width: 100%;
+/* Child row: wraps NavButtonRoot + optional badge */
+.side-nav-child-row {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px;
+    justify-content: space-between;
+    width: 100%;
     border-radius: 8px;
-    border: none;
-    background: transparent;
-    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
     cursor: pointer;
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
-    text-align: left;
+    transition: background 0.2s ease;
 }
 
-.side-nav-subitem:hover {
-    background: var(--color-surface-soft, rgba(255, 255, 255, 0.03));
+.side-nav-child-row:hover {
+    background: var(--color-surface-soft, rgba(255, 255, 255, 0.04));
+}
+
+.side-nav-child-row.is-selected {
+    background: var(--color-surface-soft-2, rgba(255, 255, 255, 0.05));
+}
+
+/* NavButtonRoot overrides within child rows */
+.side-nav-child-btn.nav-button-root {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+}
+
+.side-nav-child-row .nav-button-label {
+    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
+}
+
+.side-nav-child-row .nav-button-icon .icon {
+    color: var(--color-text-on-dark-60, rgba(251, 251, 254, 0.6));
+}
+
+.side-nav-child-row:hover .nav-button-label {
     color: var(--color-text-on-dark-80, rgba(251, 251, 254, 0.8));
 }
 
-.side-nav-subitem.is-selected {
-    background: var(--color-surface-soft-2, rgba(255, 255, 255, 0.05));
+.side-nav-child-row.is-selected .nav-button-label {
     color: var(--color-text-on-dark-100, #fbfbfe);
 }
 
-.side-nav-subitem-label {
-    font-family: "Lexend Deca", var(--font-complementary, sans-serif);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.4;
+.side-nav-child-row.is-selected .nav-button-icon .icon {
+    color: var(--color-text-on-dark-100, #fbfbfe);
 }
 
-.side-nav-help-card {
-    margin-top: auto;
+.side-nav-child-row.is-action .nav-button-label {
+    color: var(--color-success, #48bb78);
+}
+
+.side-nav-child-row.is-action .nav-button-icon .icon {
+    color: var(--color-success, #48bb78);
+}
+
+/* Badge inside child row */
+.side-nav-child-row > .side-nav-badge {
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+/* ── Separator ────────────────────────────────────────────── */
+
+.side-nav-separator {
     width: 100%;
-    border-radius: 12px;
-    padding: 14px 14px 12px;
-    background: linear-gradient(170deg, #2e2a74 0%, #1e1a54 100%);
-    border: 1px solid rgba(151, 71, 255, 0.2);
-    box-shadow:
-        0px 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+    height: 0;
+    border: none;
+    border-top: 1px solid var(--color-text-on-dark-30, rgba(251, 251, 254, 0.3));
+    flex-shrink: 0;
+}
+
+/* ── Help section wrapper (containerF) ──────────────────────── */
+
+.side-nav-help-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+    min-width: 0;
+    width: 100%;
     position: relative;
+    padding: 24px 16px;
+    margin-top: auto;
 }
 
-.side-nav-help-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-        circle at 80% 120%,
-        rgba(255, 255, 255, 0.12),
-        transparent 60%
-    );
-    pointer-events: none;
+.side-nav.is-collapsed .side-nav-help-wrapper {
+    flex: none;
+    height: 56px;
+    padding: 8px;
+}
+
+/* ── Help card (bentoHelp) ─────────────────────────────────── */
+
+.side-nav-help-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 16px 32px 16px;
+    overflow: hidden;
+    isolation: isolate;
+    flex-shrink: 0;
+}
+
+.side-nav.is-collapsed .side-nav-help-card {
+    padding: 8px;
 }
 
 .side-nav-help-head {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 
 .side-nav-help-icon {
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    background: rgba(251, 251, 254, 0.12);
+    background: var(--color-text-on-dark-30, rgba(251, 251, 254, 0.3));
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #fbfbfe;
+    color: var(--color-text-on-dark-100, #fbfbfe);
+    flex-shrink: 0;
 }
 
 .side-nav-help-text {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0;
+    padding-right: 17px;
+    position: relative;
+    z-index: 3;
 }
 
 .side-nav-help-title {
     font-family: "Helvetica", var(--font-main, sans-serif);
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--size-text-4, 20px);
     line-height: 1.4;
-    color: #fbfbfe;
+    color: var(--color-text-on-dark-100, #fbfbfe);
 }
 
 .side-nav-help-description {
     font-family: "Lexend Deca", var(--font-complementary, sans-serif);
     font-weight: 400;
-    font-size: 12px;
-    line-height: 1.5;
-    color: rgba(251, 251, 254, 0.85);
+    font-size: var(--size-text-2, 12px);
+    line-height: 19.5px;
+    color: var(--color-text-on-dark-80, rgba(251, 251, 254, 0.8));
 }
 
 .side-nav-help-cta {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
-    padding: 10px 12px;
-    border-radius: 8px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    border-radius: 6px;
     border: 1px solid var(--color-brand-primary-30, rgba(46, 44, 116, 0.3));
-    background: rgba(46, 44, 116, 0.8);
-    color: #fbfbfe;
+    background: var(--color-neutral-bg-idle, #f7f7f8);
+    color: var(--color-brand-primary-80, rgba(46, 44, 116, 0.8));
     font-family: "Lexend Deca", var(--font-complementary, sans-serif);
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
+    line-height: 16px;
     cursor: pointer;
     box-shadow: inset 0 -1px 1.4px rgba(113, 113, 113, 0.2);
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
+    transition: filter 0.2s ease;
 }
 
 .side-nav-help-cta:hover {
-    filter: brightness(1.05);
+    filter: brightness(0.96);
 }
 
-.side-nav-help-fab {
-    position: relative;
-    z-index: 1;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border-soft, rgba(255, 255, 255, 0.08));
-    background: rgba(251, 251, 254, 0.08);
-    color: #fbfbfe;
-    display: inline-flex;
+.side-nav-help-collapsed {
+    display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    flex: 1;
+    min-height: 40px;
+    border-radius: 8px;
+    background: var(--color-text-on-dark-10, rgba(251, 251, 254, 0.1));
+    color: var(--color-text-on-dark-100, #fbfbfe);
+    position: relative;
+    z-index: 3;
 }
 
-.side-nav.is-collapsed .side-nav-group-label,
-.side-nav.is-collapsed .side-nav-group-chevron,
-.side-nav.is-collapsed .side-nav-subitems,
-.side-nav.is-collapsed .side-nav-help-text,
-.side-nav.is-collapsed .side-nav-help-cta,
-.side-nav.is-collapsed .side-nav-user-meta {
+/* Help card background gradient */
+.side-nav-help-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    border: 3px solid var(--color-brand-primary-lighter, rgba(46, 44, 116, 0.6));
+    z-index: 1;
+    overflow: hidden;
+}
+
+.side-nav-help-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--color-brand-primary, #2e2c74) 0%, var(--color-brand-primary-darker, #1e1a54) 100%);
+}
+
+.side-nav.is-collapsed .side-nav-help-bg {
     display: none;
 }
 
-.side-nav.is-collapsed .side-nav-content {
-    width: 100%;
-    align-items: center;
-}
+/* ── Collapsed-specific overrides ─────────────────────────── */
 
-.side-nav.is-collapsed .side-nav-group-trigger {
-    justify-content: center;
+.side-nav.is-collapsed .side-nav-btn-label,
+.side-nav.is-collapsed .side-nav-user-meta {
+    display: none;
 }

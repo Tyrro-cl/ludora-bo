@@ -3,7 +3,7 @@ import SideNav from '../SideNav/SideNav';
 import TopNav from '../TopNav/TopNav';
 import './DashboardLayout.css';
 
-const DashboardLayout = ({ children, user, onLogout, navItems: customNavItems, selectedNavItem }) => {
+const DashboardLayout = ({ children, user, onLogout, navGroups: customNavGroups, navItems: customNavItems }) => {
   const [sideNavExpanded, setSideNavExpanded] = useState(true);
   const [notifications, setNotifications] = useState(null);
 
@@ -15,93 +15,13 @@ const DashboardLayout = ({ children, user, onLogout, navItems: customNavItems, s
     setNotifications(notifications ? null : 'open');
   };
 
-  // Use custom nav items if provided, otherwise use defaults
-  const navItems = customNavItems || [
-    {
-      id: 'dashboard',
-      label: 'Tableau de bord',
-      icon: 'home',
-      selected: false,
-      onClick: () => window.location.href = '/home/overview'
-    },
-    {
-      id: 'classes',
-      label: 'Classes',
-      icon: 'users',
-      selected: false,
-      onClick: () => window.location.href = '/classes'
-    },
-    {
-      id: 'activities',
-      label: 'Activités',
-      icon: 'listTodo',
-      selected: false,
-      onClick: () => window.location.href = '/activities'
-    },
-    {
-      id: 'students',
-      label: 'Élèves',
-      icon: 'user',
-      selected: false,
-      onClick: () => window.location.href = '/students'
-    },
-  ];
-
-  // Update selected state based on selectedNavItem prop
-  const finalNavItems = navItems.map(item => ({
-    ...item,
-    selected: selectedNavItem ? item.id === selectedNavItem : item.selected
-  }));
-
-  const activityItems = [
-    { id: 'published', label: 'Publiées', count: 12 },
-    { id: 'drafts', label: 'Brouillons', count: 3 },
-    { id: 'scheduled', label: 'Programmées', count: 5 },
-  ];
-
-  const stats = [
-    {
-      id: 'todayActivities',
-      title: 'Activités du jour',
-      value: 16,
-      trend: '+11%',
-      trendTone: 'positive',
-      icon: 'taskSquare'
-    },
-    {
-      id: 'userOfDay',
-      title: 'Utilisateur du jour',
-      value: 56,
-      trend: '-2%',
-      trendTone: 'negative',
-      icon: 'taskSquare'
-    },
-    {
-      id: 'parentMessages',
-      title: 'Messages parent',
-      value: 205,
-      trend: '-11%',
-      trendTone: 'warning',
-      icon: 'taskSquare'
-    },
-    {
-      id: 'studentAlerts',
-      title: 'Alertes étudiantes',
-      value: 10,
-      trend: '-8%',
-      trendTone: 'warning',
-      icon: 'taskSquare'
-    },
-  ];
-
   const help = {
     title: "Besoin d'aide?",
-    description: "Consultez notre guide d'utilisation",
-    ctaLabel: 'Consulter le guide',
-    icon: 'messageCircleQuestion',
+    description: "Consultez notre guide d'utilisation et nos ressources",
+    ctaLabel: 'Voir le guide',
+    icon: 'MessageCircleQuestion',
   };
 
-  // Transform user object to match SideNav expectations
   const sideNavUser = user ? {
     name: user.personalInfo?.firstName 
       ? String(user.personalInfo.firstName) 
@@ -131,9 +51,8 @@ const DashboardLayout = ({ children, user, onLogout, navItems: customNavItems, s
           <SideNav
             state={sideNavExpanded ? 'expanded' : 'collapsed'}
             user={sideNavUser}
-            navItems={finalNavItems}
-            activityItems={activityItems}
-            stats={stats}
+            navGroups={customNavGroups}
+            navItems={customNavItems}
             help={help}
             onToggle={handleSideNavToggle}
             onHelpClick={() => console.log('Help clicked')}

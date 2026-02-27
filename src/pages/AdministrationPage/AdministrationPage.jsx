@@ -58,20 +58,10 @@ const AdministrationPage = () => {
     navigate('/');
   };
 
-  const navItems = [
-    { id: 'home', label: 'Accueil', icon: 'home', onClick: () => navigate('/home/overview') },
-    { id: 'students', label: "Tableau d'Éleves", icon: 'users', onClick: () => navigate('/notes') },
-    { id: 'activities', label: 'Activités', icon: 'listTodo', onClick: () => navigate('/activities') },
-    { id: 'messages', label: 'Mes messages', icon: 'messagesSquare', count: 0, countVariant: 'alert', onClick: () => navigate('/messages') },
-    { id: 'admin', label: 'Administration', icon: 'settings', selected: true, onClick: () => {} },
-  ];
-
   return (
     <DashboardLayout 
       user={user} 
       onLogout={handleLogout}
-      navItems={navItems}
-      selectedNavItem="admin"
     >
       <div className="administration-page">
         <div className="admin-header">

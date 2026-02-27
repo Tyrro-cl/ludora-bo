@@ -66,20 +66,10 @@ const MessagesPage = () => {
     navigate('/');
   };
 
-  const navItems = [
-    { id: 'home', label: 'Accueil', icon: 'home', onClick: () => navigate('/home/overview') },
-    { id: 'students', label: "Tableau d'Éleves", icon: 'users', onClick: () => navigate('/notes') },
-    { id: 'activities', label: 'Activités', icon: 'listTodo', onClick: () => navigate('/activities') },
-    { id: 'messages', label: 'Mes messages', icon: 'messagesSquare', count: messages.length, countVariant: 'alert', selected: true, onClick: () => {} },
-    { id: 'admin', label: 'Administration', icon: 'settings', onClick: () => navigate('/administration') },
-  ];
-
   return (
     <DashboardLayout 
       user={user} 
       onLogout={handleLogout}
-      navItems={navItems}
-      selectedNavItem="messages"
     >
       <div className="messages-page">
         <div className="messages-header">

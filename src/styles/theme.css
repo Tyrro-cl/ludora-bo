@@ -3,17 +3,18 @@
        BRAND COLORS
        ============================================ */
     
-    /* Brand Core */
+    /* Brand Core (synced from Figma) */
     --color-brand-main: #944f5f;
-    --color-brand-accent: #2e2c74;
-    --color-brand-alternate: #ff8844;
+    --color-brand-accent: var(--figma-brand-core-accent);
+    --color-brand-alternate: var(--figma-brand-core-alternate);
     
-    /* Brand Primary (based on Accent) */
+    /* Brand Primary (synced from Figma) */
+    --color-brand-primary: var(--figma-brand-primary-base);
     --color-brand-primary-10: rgba(46, 44, 116, 0.1);
     --color-brand-primary-30: rgba(46, 44, 116, 0.3);
-    --color-brand-primary-60: rgba(46, 44, 116, 0.6);
-    --color-brand-primary-80: rgba(46, 44, 116, 0.8);
-    --color-brand-primary-100: #2e2c74;
+    --color-brand-primary-60: var(--figma-brand-primary-lighter);
+    --color-brand-primary-80: var(--figma-brand-primary-80);
+    --color-brand-primary-100: var(--figma-brand-primary-base);
     
     /* Brand Secondary */
     --color-brand-secondary-10: rgba(14, 9, 18, 0.1);
@@ -23,12 +24,12 @@
     --color-brand-secondary-90: #f7f7f8;
     --color-brand-secondary-100: #0e0912;
     
-    /* Brand Tertiary */
-    --color-brand-tertiary-10: rgba(251, 251, 254, 0.1);
-    --color-brand-tertiary-30: rgba(251, 251, 254, 0.3);
+    /* Brand Tertiary (synced from Figma) */
+    --color-brand-tertiary-10: var(--figma-text-on-background-10);
+    --color-brand-tertiary-30: var(--figma-brand-tertiary-30);
     --color-brand-tertiary-60: rgba(251, 251, 254, 0.6);
-    --color-brand-tertiary-80: rgba(251, 251, 254, 0.8);
-    --color-brand-tertiary-100: #fbfbfe;
+    --color-brand-tertiary-80: var(--figma-brand-tertiary-80);
+    --color-brand-tertiary-100: var(--figma-brand-tertiary-100);
     
     /* Brand Cloud (neutral grays) */
     --color-brand-cloud-10: #8c8990;
@@ -43,30 +44,30 @@
     --color-brand-cloud-100: #ffffff;
     
     /* ============================================
-       UTILITY COLORS
+       UTILITY COLORS (synced from Figma)
        ============================================ */
-    --color-utility-decrease: #e53e3e;
-    --color-utility-increase: #48bb78;
-    --color-utility-warning: #ecb22e;
+    --color-utility-decrease: var(--figma-utility-alert);
+    --color-utility-increase: var(--figma-utility-increase);
+    --color-utility-warning: var(--figma-utility-warning);
     --color-utility-information: #3333ff;
-    --color-utility-changement: #9747ff;
+    --color-utility-changement: var(--figma-utility-changement);
     --color-utility-caution: #ffa347;
     --color-utility-stuck: #a5a3a8;
     
     /* ============================================
-       SEMANTIC BACKGROUND COLORS - DARK MODE
+       SEMANTIC BACKGROUND COLORS - DARK MODE (synced from Figma)
        ============================================ */
     --color-bg-dark-dark: #0e0912;
     --color-bg-dark-base: #201a25;
-    --color-bg-dark-light: #2a272d;
+    --color-bg-dark-light: var(--figma-bg-light);
     --color-bg-dark-surface: #ffffff;
     --color-bg-dark-behind: #ffffff;
     
     /* ============================================
-       SEMANTIC BACKGROUND COLORS - LIGHT MODE
+       SEMANTIC BACKGROUND COLORS - LIGHT MODE (synced from Figma)
        ============================================ */
     --color-bg-light-dark: #dedede;
-    --color-bg-light-base: #ebeaec;
+    --color-bg-light-base: var(--figma-bg-base);
     --color-bg-light-light: #f7f7f8;
     --color-bg-light-surface: #ffffff;
     --color-bg-light-behind: #ffffff;
@@ -78,13 +79,13 @@
     --color-surface-soft-2: rgba(255, 255, 255, 0.05);
     
     /* ============================================
-       SEMANTIC TEXT COLORS - ON DARK
+       SEMANTIC TEXT COLORS - ON DARK (synced from Figma)
        ============================================ */
-    --color-text-on-dark-10: rgba(251, 251, 254, 0.1);
-    --color-text-on-dark-30: rgba(251, 251, 254, 0.3);
-    --color-text-on-dark-60: rgba(251, 251, 254, 0.6);
-    --color-text-on-dark-80: rgba(251, 251, 254, 0.8);
-    --color-text-on-dark-100: #fbfbfe;
+    --color-text-on-dark-10: var(--figma-text-on-background-10);
+    --color-text-on-dark-30: var(--figma-text-on-background-30);
+    --color-text-on-dark-60: var(--figma-text-on-background-60);
+    --color-text-on-dark-80: var(--figma-text-on-background-80);
+    --color-text-on-dark-100: var(--figma-text-on-background-100);
     --color-text-on-dark-shade: #faf9fa;
     --color-text-on-dark-muted: #edebef;
     
@@ -153,10 +154,10 @@
     --color-interaction-light-neutral-stroke-loading: rgba(251, 251, 254, 0.6);
     
     /* ============================================
-       TYPOGRAPHY
+       TYPOGRAPHY (synced from Figma)
        ============================================ */
     --font-main: "Brevia", sans-serif;
-    --font-complementary: "Lexend Deca", sans-serif;
+    --font-complementary: var(--figma-font-complementary);
     --font-monospace: "Jetbrains Mono", monospace;
     
     /* ============================================
@@ -187,12 +188,12 @@
     --color-border-strong: rgba(46, 44, 116, 0.4);
     
     /* ============================================
-       RADII
+       RADII (synced from Figma)
        ============================================ */
     --radius-sm: 4px;
     --radius-md: 6px;
     --radius-lg: 8px;
-    --radius-pill: 99px;
+    --radius-pill: var(--figma-radius-pill);
     --radius-rectangular: 4px;
     
     /* ============================================
@@ -215,7 +216,7 @@
     --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.1);
     --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.15);
     --shadow-inner-idle: rgba(113, 113, 113, 0.2);
-    --shadow-inner-hover: rgba(113, 113, 113, 0.2);
+    --shadow-inner-hover: var(--figma-shadow-inner-hover);
     
     /* ============================================
        COMPONENT-SPECIFIC COLORS
@@ -259,6 +260,84 @@
     
     --color-warning: var(--color-utility-warning);
     --color-warning-soft: rgba(251, 146, 60, 0.15);
+    
+    /* ============================================
+       FIGMA SYNC (V1 Desktop/Mobile Dashboard)
+       Source: node-id=809-30292, var-set-id=112-14073
+       ============================================ */
+    
+    /* Text on background (on dark) */
+    --figma-text-on-background-10: #fbfbfe1a;
+    --figma-text-on-background-30: #fbfbfe4d;
+    --figma-text-on-background-60: #fbfbfe99;
+    --figma-text-on-background-80: #fbfbfecc;
+    --figma-text-on-background-100: #fbfbfe;
+    
+    /* Brand core */
+    --figma-brand-core-accent: #2e2c74;
+    --figma-brand-core-alternate: #ff8844;
+    
+    /* Brand primary shades */
+    --figma-brand-primary-base: #2e2c74;
+    --figma-brand-primary-darker: #1e1a54;
+    --figma-brand-primary-lighter: #2e2c7499;
+    --figma-brand-primary-80: #2e2c74cc;
+    
+    /* Brand tertiary */
+    --figma-brand-tertiary-30: #fbfbfe4d;
+    --figma-brand-tertiary-80: #fbfbfecc;
+    --figma-brand-tertiary-100: #fbfbfe;
+    
+    /* Background */
+    --figma-bg-light: #2a272d;
+    --figma-bg-base: #ebeaec;
+    --figma-background: #fbfbfe4d;
+    
+    /* Utility colors */
+    --figma-utility-alert: #e53e3e;
+    --figma-utility-increase: #48bb78;
+    --figma-utility-warning: #ecb22e;
+    --figma-utility-changement: #9747ff;
+    
+    /* Neutral / interaction */
+    --figma-neutral-bg-idle: #f7f7f8;
+    --figma-neutral-stroke-idle: #2e2c744d;
+    --figma-color-stroke: #e53e3e4d;
+    
+    /* Slot colors (Figma component slots) */
+    --color-slot2: var(--figma-utility-alert);
+    --color-slot2-icon: var(--figma-text-on-background-100);
+    --color-slot3-text: var(--figma-text-on-background-60);
+    --color-slot5-icon: var(--figma-text-on-background-100);
+    
+    /* Typography */
+    --figma-font-complementary: "Lexend Deca", sans-serif;
+    
+    /* Sizing (Figma size tokens → px) — use via var(--figma-size-*) */
+    --figma-size-0-5: 4px;
+    --figma-size-1: 8px;
+    --figma-size-2: 12px;
+    --figma-size-2-5: 10px;
+    --figma-size-3: 16px;
+    --figma-size-4: 20px;
+    --size-text-2: var(--figma-size-2);
+    --size-text-4: var(--figma-size-4);
+    
+    /* Avatar (synced from Figma) */
+    --figma-avatar-name: 20px;
+    --figma-avatar-position: 16px;
+    --avatar-name: var(--figma-avatar-name);
+    --avatar-position: var(--figma-avatar-position);
+    
+    /* Radius */
+    --figma-radius-pill: 99px;
+    
+    /* Shadow */
+    --figma-shadow-inner-hover: #71717133;
+    
+    /* Brand primary extended (for gradients, etc.) */
+    --color-brand-primary-darker: var(--figma-brand-primary-darker);
+    --color-brand-primary-lighter: var(--figma-brand-primary-lighter);
 }
 
 /* ============================================

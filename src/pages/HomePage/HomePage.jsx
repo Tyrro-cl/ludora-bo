@@ -81,17 +81,9 @@ const HomePage = () => {
     return () => clearInterval(clockTimer);
   }, []);
 
-  const navItems = [
-    { id: 'home', label: 'Accueil', icon: 'home', selected: true, onClick: () => navigate('/home/overview') },
-    { id: 'students', label: "Tableau d'Éleves", icon: 'users', onClick: () => navigate('/notes') },
-    { id: 'activities', label: 'Activités', icon: 'listTodo', onClick: () => navigate('/activities') },
-    { id: 'messages', label: 'Mes messages', icon: 'messagesSquare', count: 0, countVariant: 'alert', onClick: () => navigate('/messages') },
-    { id: 'admin', label: 'Administration', icon: 'settings', onClick: () => navigate('/administration') },
-  ];
-
   if (loading) {
     return (
-      <DashboardLayout user={user} onLogout={logout} navItems={navItems} selectedNavItem="home">
+      <DashboardLayout user={user} onLogout={logout}>
         <div className="home-loading">
           <p>Chargement...</p>
         </div>
@@ -190,7 +182,7 @@ const HomePage = () => {
   }).format(now);
 
   return (
-    <DashboardLayout user={user} onLogout={logout} navItems={navItems} selectedNavItem="home">
+    <DashboardLayout user={user} onLogout={logout}>
       <div className="home-page">
         <div className="home-toolbar">
           <p className="home-toolbar-breadcrumb">

@@ -56,25 +56,25 @@
     gap: 6px;
     height: 32px;
     padding: 0 8px;
-    border: 1px solid rgba(46, 44, 116, 0.3);
-    border-radius: 4px;
-    font-family: "Lexend Deca", sans-serif;
+    border: 1px solid var(--color-brand-primary-30);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-complementary);
     font-size: 16px;
     font-weight: 400;
     line-height: 26.4px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: inset 0px -1px 1.4px 0px rgba(113, 113, 113, 0.2);
+    box-shadow: inset 0 -1px 1.4px var(--shadow-inner-idle);
 }
 
 .notes-page__action-btn--export {
-    background-color: #2a272d;
-    color: #fbfbfe;
+    background-color: var(--color-bg-dark-light);
+    color: var(--color-text-on-dark-100);
 }
 
 .notes-page__action-btn--create {
-    background-color: rgba(46, 44, 116, 0.8);
-    color: #fbfbfe;
+    background-color: var(--color-interaction-branded-bg-idle);
+    color: var(--color-text-on-dark-100);
 }
 
 .notes-page__action-btn:hover {
@@ -189,13 +189,13 @@
     gap: 8px;
     height: 100%;
     padding: 0 8px 0 4px;
-    background-color: rgba(251, 251, 254, 0.3);
+    background-color: var(--color-text-on-dark-30);
     border: 1px solid var(--color-brand-cloud-60);
     border-radius: 5.333px;
 }
 
 .notes-page__filter-pill-label {
-    font-family: "Lexend Deca", sans-serif;
+    font-family: var(--font-complementary);
     font-size: 16px;
     font-weight: 400;
     line-height: normal;
@@ -246,8 +246,8 @@
 
 .notes-table__cell--odd {
     background-color: var(--color-bg-dark-light);
-    border-top: 1px solid #201a25;
-    border-bottom: 1px solid #201a25;
+    border-top: 1px solid var(--color-bg-dark-base);
+    border-bottom: 1px solid var(--color-bg-dark-base);
 }
 
 .notes-table__cell--even {
@@ -272,7 +272,7 @@
     overflow: hidden;
     position: relative;
     background-color: var(--color-brand-alternate);
-    box-shadow: 0px 3.5px 5.5px 0px rgba(0, 0, 0, 0.02);
+    box-shadow: var(--shadow-1);
     flex-shrink: 0;
 }
 
@@ -308,15 +308,15 @@
 }
 
 .notes-table__activity-text {
-    font-family: "Helvetica", sans-serif;
+    font-family: "Helvetica", var(--font-main, sans-serif);
     font-weight: 700;
     font-size: 12px;
     line-height: 1.4;
-    color: rgba(251, 251, 254, 0.6);
+    color: var(--color-text-on-dark-60);
 }
 
 .notes-table__activity-separator {
-    color: rgba(251, 251, 254, 1);
+    color: var(--color-text-on-dark-100);
 }
 
 /* Score Cell */
@@ -349,23 +349,23 @@
 }
 
 .notes-table__status--success {
-    background-color: rgba(72, 187, 120, 0.3);
-    border: 1px solid rgba(181, 227, 200, 0.3);
+    background-color: var(--color-badge-on-track-bg);
+    border: 1px solid var(--color-badge-on-track-stroke);
 }
 
 .notes-table__status--support {
-    background-color: rgba(255, 136, 68, 0.3);
-    border: 1px solid rgba(255, 136, 68, 0.3);
+    background-color: var(--color-badge-support-bg);
+    border: 1px solid var(--color-badge-support-stroke);
 }
 
 .notes-table__status--progress {
-    background-color: rgba(151, 71, 255, 0.3);
-    border: 1px solid rgba(151, 71, 255, 0.3);
+    background-color: var(--color-badge-improving-bg);
+    border: 1px solid var(--color-badge-improving-stroke);
 }
 
 .notes-table__status--risk {
-    background-color: rgba(229, 62, 62, 0.3);
-    border: 1px solid rgba(229, 62, 62, 0.3);
+    background-color: var(--color-badge-risk-bg);
+    border: 1px solid var(--color-badge-risk-stroke);
 }
 
 .notes-table__status-icon {
@@ -383,19 +383,19 @@
 }
 
 .notes-table__status--success .notes-table__status-text {
-    color: #48bb78;
+    color: var(--color-utility-increase);
 }
 
 .notes-table__status--support .notes-table__status-text {
-    color: #ffa347;
+    color: var(--color-utility-caution);
 }
 
 .notes-table__status--progress .notes-table__status-text {
-    color: #9747ff;
+    color: var(--color-utility-changement);
 }
 
 .notes-table__status--risk .notes-table__status-text {
-    color: #e53e3e;
+    color: var(--color-utility-decrease);
 }
 
 /* Action Cell */
@@ -414,7 +414,7 @@
 .notes-table__action-icon {
     width: 24px;
     height: 24px;
-    color: #fbfbfe;
+    color: var(--color-text-on-dark-100);
 }
 
 .notes-table__action-btn:hover .notes-table__action-icon {

@@ -100,13 +100,7 @@ const StudentDetailPage = () => {
     navigate('/');
   };
 
-  const navItems = [
-    { id: 'home', label: 'Accueil', icon: 'home', onClick: () => navigate('/home/overview') },
-    { id: 'students', label: "Tableau d'Éleves", icon: 'users', selected: true, onClick: () => navigate('/notes') },
-    { id: 'activities', label: 'Activités', icon: 'listTodo', onClick: () => navigate('/activities') },
-    { id: 'messages', label: 'Mes messages', icon: 'messagesSquare', count: 0, countVariant: 'alert', onClick: () => navigate('/messages') },
-    { id: 'admin', label: 'Administration', icon: 'settings', onClick: () => navigate('/administration') },
-  ];
+  // navItems removed — SideNav uses DEFAULT_NAV_GROUPS
 
   const getScoreColor = (score) => {
     if (score >= 16) return 'success';
@@ -126,7 +120,7 @@ const StudentDetailPage = () => {
 
   if (loading) {
     return (
-      <DashboardLayout user={user} onLogout={handleLogout} navItems={navItems} selectedNavItem="students">
+      <DashboardLayout user={user} onLogout={handleLogout}>
         <div className="student-detail-loading">
           <p>Chargement des informations de l'élève...</p>
         </div>
@@ -136,7 +130,7 @@ const StudentDetailPage = () => {
 
   if (!student) {
     return (
-      <DashboardLayout user={user} onLogout={handleLogout} navItems={navItems} selectedNavItem="students">
+      <DashboardLayout user={user} onLogout={handleLogout}>
         <div className="student-detail-error">
           <p>Élève non trouvé</p>
           <Button variant="primary" onClick={() => navigate('/notes')}>
@@ -148,7 +142,7 @@ const StudentDetailPage = () => {
   }
 
   return (
-    <DashboardLayout user={user} onLogout={handleLogout} navItems={navItems} selectedNavItem="students">
+    <DashboardLayout user={user} onLogout={handleLogout}>
       <div className="student-detail-page">
         {/* Breadcrumb */}
         <div className="student-detail-breadcrumb">
