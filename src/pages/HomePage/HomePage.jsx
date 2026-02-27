@@ -91,15 +91,8 @@ const HomePage = () => {
     );
   }
 
+  /* Quick actions order aligned with Figma design */
   const quickActions = [
-    {
-      id: 'notes',
-      title: 'Voir les Notes',
-      subtitle: '45 notes à corriger',
-      icon: 'book',
-      tone: 'purple',
-      onClick: () => navigate('/notes')
-    },
     {
       id: 'alerts',
       title: 'Voir Urgences',
@@ -109,12 +102,12 @@ const HomePage = () => {
       onClick: () => navigate('/notes')
     },
     {
-      id: 'messages',
-      title: 'Messages Parents',
-      subtitle: '12 non lus',
-      icon: 'message-square',
-      tone: 'orange',
-      onClick: () => navigate('/messages')
+      id: 'notes',
+      title: 'Voir les Notes',
+      subtitle: '45 notes à corriger',
+      icon: 'book',
+      tone: 'purple',
+      onClick: () => navigate('/notes')
     },
     {
       id: 'publish',
@@ -123,6 +116,14 @@ const HomePage = () => {
       icon: 'send',
       tone: 'green',
       onClick: () => navigate('/activities')
+    },
+    {
+      id: 'messages',
+      title: 'Messages Parents',
+      subtitle: '12 non lus',
+      icon: 'message-square',
+      tone: 'orange',
+      onClick: () => navigate('/messages')
     },
     {
       id: 'attendance',
@@ -186,14 +187,14 @@ const HomePage = () => {
       <div className="home-page">
         <div className="home-toolbar">
           <p className="home-toolbar-breadcrumb">
-            <span>Crumb1</span>
+            <span>Accueil</span>
             <span className="home-breadcrumb-separator">/</span>
-            <span>ItemSelected</span>
+            <span>Vue d&apos;ensemble</span>
           </p>
 
           <label className="home-toolbar-search" aria-label="Recherche globale">
             <Icon name="search" size={14} color="var(--color-text-on-dark-60)" />
-            <input type="text" placeholder="Recherchez... (Activities, TP, Dictée)" />
+            <input type="text" placeholder="Rechercher... (Addition, TP, Dictée)" />
           </label>
         </div>
 

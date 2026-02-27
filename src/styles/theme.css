@@ -58,8 +58,9 @@
        SEMANTIC BACKGROUND COLORS - DARK MODE (synced from Figma)
        ============================================ */
     --color-bg-dark-dark: #0e0912;
-    --color-bg-dark-base: #201a25;
+    --color-bg-dark-base: var(--figma-bg-base-dark);
     --color-bg-dark-light: var(--figma-bg-light);
+    --color-bg-dark-lighter: var(--figma-bg-lighter);
     --color-bg-dark-surface: #ffffff;
     --color-bg-dark-behind: #ffffff;
     
@@ -291,7 +292,13 @@
     /* Background */
     --figma-bg-light: #2a272d;
     --figma-bg-base: #ebeaec;
+    --figma-bg-base-dark: #201a25;
+    --figma-bg-lighter: #403b44;
     --figma-background: #fbfbfe4d;
+    
+    /* Gradient tints (quick actions, cards) */
+    --figma-lighter: #48bb784d;
+    --figma-lighter-alternate: #b5e3c84d;
     
     /* Utility colors */
     --figma-utility-alert: #e53e3e;
