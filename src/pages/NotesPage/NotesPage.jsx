@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../context/AuthContext';
+import DashboardLayout from '../../components/organisms/DashboardLayout/DashboardLayout';
 import './NotesPage.css';
 
 // Icon components (simplified SVG icons)
@@ -75,8 +77,42 @@ const mockStudents = [
   { id: 10, name: 'P. Dubois', avatar: '🦊', class: 'CM2D', activity: 'Addition et Substraction / Se présenter / 3+...', score: '6 / 20', scoreType: 'warning', status: 'support', statusText: 'Besoin de support' },
 ];
 
+const XIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+// Mock activity types for facette modal
+const ACTIVITY_TYPES = [
+  'Addition',
+  'Soustraction',
+  'Multiplication',
+  'Division',
+  'Dictée',
+  'Lecture',
+  'Se présenter',
+  'TP',
+];
+
 const NotesPage = () => {
+  const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('all');
+  const [facetteModalOpen, setFacetteModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') setFacetteModalOpen(false);
+    };
+    if (facetteModalOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [facetteModalOpen]);
 
   const handleExportNotes = () => {
     // Prepare data for CSV export
@@ -132,9 +168,6 @@ const NotesPage = () => {
       case 'warning':
         return 'notes-table__score--warning';
       case 'caution':
-                  className="notes-page__action-btn notes-page__action-btn--export"
-                  onClick={handleExportNotes}
-                
         return 'notes-table__score--caution';
       default:
         return '';
@@ -157,6 +190,7 @@ const NotesPage = () => {
   };
 
   return (
+    <DashboardLayout user={user} onLogout={logout}>
     <div className="notes-page">
       <div className="notes-page__container">
         {/* Header Section */}
@@ -166,7 +200,11 @@ const NotesPage = () => {
             <div className="notes-page__title-row">
               <h1 className="notes-page__title">Aperçu Notes</h1>
               <div className="notes-page__actions">
-                <button className="notes-page__action-btn notes-page__action-btn--export">
+                <button
+                  type="button"
+                  className="notes-page__action-btn notes-page__action-btn--export"
+                  onClick={handleExportNotes}
+                >
                   <span className="notes-page__action-icon">
                     <ExportIcon />
                   </span>
@@ -245,12 +283,18 @@ const NotesPage = () => {
                 </div>
 
                 <div className="notes-page__filter-pill">
-                  <div className="notes-page__filter-pill-content">
-                    <span className="notes-page__filter-pill-label">Type d'activités</span>
+                  <button
+                    type="button"
+                    className={`notes-page__filter-pill-content notes-page__filter-pill-content--clickable ${facetteModalOpen ? 'notes-page__filter-pill-content--active' : ''}`}
+                    onClick={() => setFacetteModalOpen((prev) => !prev)}
+                    aria-expanded={facetteModalOpen}
+                    aria-haspopup="dialog"
+                  >
+                    <span className="notes-page__filter-pill-label">Type d&apos;activités</span>
                     <span className="notes-page__filter-pill-icon">
                       <ChevronDownIcon />
                     </span>
-                  </div>
+                  </button>
                 </div>
 
                 <div className="notes-page__filter-pill">
@@ -271,66 +315,113 @@ const NotesPage = () => {
 
         {/* Table Section */}
         <div className="notes-page__table-container">
+          {/* Column headers */}
+          <div className="notes-table__header">
+            <span className="notes-table__header-cell notes-table__header-cell--eleves">Élèves</span>
+            <span className="notes-table__header-cell notes-table__header-cell--classe">Classe</span>
+            <span className="notes-table__header-cell notes-table__header-cell--activites">Activités en cours</span>
+            <span className="notes-table__header-cell notes-table__header-cell--moyenne">Moyenne</span>
+            <span className="notes-table__header-cell notes-table__header-cell--diagnostic">Diagnostic</span>
+            <span className="notes-table__header-cell notes-table__header-cell--actions" />
+          </div>
+
           <div className="notes-table">
-            {mockStudents.map((student, index) => (
-              <React.Fragment key={student.id}>
-                {/* Élèves Column */}
-                <div className={`notes-table__cell ${index % 2 === 0 ? 'notes-table__cell--odd' : 'notes-table__cell--even'}`}>
-                  <div className="notes-table__student">
-                    <div className="notes-table__avatar">
-                      <span style={{ fontSize: '24px' }}>{student.avatar}</span>
+            {mockStudents.map((student, index) => {
+              const isFirst = index === 0;
+              const isLast = index === mockStudents.length - 1;
+              const rowClasses = [
+                'notes-table__row',
+                index % 2 === 0 ? 'notes-table__row--odd' : 'notes-table__row--even',
+                isFirst && 'notes-table__row--first',
+                isLast && 'notes-table__row--last',
+              ].filter(Boolean).join(' ');
+
+              return (
+                <div key={student.id} className={rowClasses}>
+                  <div className="notes-table__cell notes-table__cell--eleves">
+                    <div className="notes-table__student">
+                      <div className="notes-table__avatar">
+                        <span style={{ fontSize: '24px' }}>{student.avatar}</span>
+                      </div>
+                      <span className="notes-table__student-name">{student.name}</span>
                     </div>
-                    <span className="notes-table__student-name">{student.name}</span>
                   </div>
-                </div>
 
-                {/* Classe Column */}
-                <div className={`notes-table__cell ${index % 2 === 0 ? 'notes-table__cell--odd' : 'notes-table__cell--even'}`}>
-                  <span className="notes-table__class">{student.class}</span>
-                </div>
-
-                {/* Activités en cours Column */}
-                <div className={`notes-table__cell ${index % 2 === 0 ? 'notes-table__cell--odd' : 'notes-table__cell--even'}`}>
-                  <div className="notes-table__activity">
-                    <span className="notes-table__activity-text">Addition et Substraction</span>
-                    <span className="notes-table__activity-separator">/</span>
-                    <span className="notes-table__activity-text">Se présenter</span>
-                    <span className="notes-table__activity-separator">/</span>
-                    <span className="notes-table__activity-text">3+...</span>
+                  <div className="notes-table__cell notes-table__cell--classe">
+                    <span className="notes-table__class">{student.class}</span>
                   </div>
-                </div>
 
-                {/* Moyenne Column */}
-                <div className={`notes-table__cell ${index % 2 === 0 ? 'notes-table__cell--odd' : 'notes-table__cell--even'}`}>
-                  <span className={`notes-table__score ${getScoreClass(student.scoreType)}`}>
-                    {student.score}
-                  </span>
-                </div>
+                  <div className="notes-table__cell notes-table__cell--activites">
+                    <span className="notes-table__activity-text">Lot de jeu basiques A</span>
+                  </div>
 
-                {/* Diagnostic Column */}
-                <div className={`notes-table__cell ${index % 2 === 0 ? 'notes-table__cell--odd' : 'notes-table__cell--even'}`}>
-                  <div className={`notes-table__status ${getStatusClass(student.status)}`}>
-                    <span className="notes-table__status-icon">
-                      {getStatusIcon(student.status)}
+                  <div className="notes-table__cell notes-table__cell--moyenne">
+                    <span className={`notes-table__score ${getScoreClass(student.scoreType)}`}>
+                      {student.score}
                     </span>
-                    <span className="notes-table__status-text">{student.statusText}</span>
+                  </div>
+
+                  <div className="notes-table__cell notes-table__cell--diagnostic">
+                    <div className={`notes-table__status ${getStatusClass(student.status)}`}>
+                      <span className="notes-table__status-icon">
+                        {getStatusIcon(student.status)}
+                      </span>
+                      <span className="notes-table__status-text">{student.statusText}</span>
+                    </div>
+                  </div>
+
+                  <div className="notes-table__cell notes-table__cell--actions">
+                    <button className="notes-table__action-btn">
+                      <span className="notes-table__action-icon">
+                        <MoreIcon />
+                      </span>
+                    </button>
                   </div>
                 </div>
-
-                {/* Actions Column */}
-                <div className={`notes-table__cell notes-table__cell--centered ${index % 2 === 0 ? 'notes-table__cell--odd' : 'notes-table__cell--even'}`}>
-                  <button className="notes-table__action-btn">
-                    <span className="notes-table__action-icon">
-                      <MoreIcon />
-                    </span>
-                  </button>
-                </div>
-              </React.Fragment>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
+
+      {/* Facette modal for Type d'activités */}
+      {facetteModalOpen && (
+        <div
+          className="notes-page__facette-modal-backdrop"
+          onClick={() => setFacetteModalOpen(false)}
+          role="presentation"
+        >
+          <div
+            className="notes-page__facette-modal"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="facette-modal-title"
+          >
+            <div className="notes-page__facette-modal-header">
+              <h3 id="facette-modal-title">Type d&apos;activités</h3>
+              <button
+                type="button"
+                className="notes-page__facette-modal-close"
+                onClick={() => setFacetteModalOpen(false)}
+                aria-label="Fermer"
+              >
+                <XIcon />
+              </button>
+            </div>
+            <div className="notes-page__facette-modal-body">
+              {ACTIVITY_TYPES.map((type) => (
+                <label key={type} className="notes-page__facette-modal-item">
+                  <input type="checkbox" defaultChecked />
+                  <span>{type}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
+    </DashboardLayout>
   );
 };
 

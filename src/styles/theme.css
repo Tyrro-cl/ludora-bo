@@ -329,6 +329,7 @@
     --figma-size-4: 20px;
     --size-text-2: var(--figma-size-2);
     --size-text-4: var(--figma-size-4);
+    --size-text-6: 40px;
     
     /* Avatar (synced from Figma) */
     --figma-avatar-name: 20px;

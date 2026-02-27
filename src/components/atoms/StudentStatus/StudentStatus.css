@@ -1,32 +1,49 @@
 .student-status {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
 }
 
 .student-status-root {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-1);
+  gap: 6px;
   position: relative;
-  overflow: hidden;
-  padding: var(--space-1) var(--space-2);
-  border-radius: var(--radius-sm);
   isolation: isolate;
   flex-shrink: 0;
+}
+
+/* Primary Variant — full pill with bg/border */
+.student-status-primary .student-status-root {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.student-status-primary .student-status-background {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-badge-on-track-bg);
+  border: 1px solid var(--color-badge-on-track-stroke);
+  border-radius: var(--radius-sm);
+  z-index: 1;
+}
+
+/* Secondary Variant — bullet icon + text, no bg on root */
+.student-status-secondary .student-status-root {
+  padding: 0;
 }
 
 /* Icon Container */
 .student-status-icon-container {
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2px;
   flex-shrink: 0;
   z-index: 3;
+  border-radius: var(--borderRadius, 8px);
+  overflow: hidden;
 }
 
 .student-status-icon-mask {
@@ -72,16 +89,15 @@
   height: 24px;
 }
 
-/* Primary Variant */
-.student-status-primary .student-status-background {
-  position: absolute;
-  inset: 0;
+/* Secondary variant: bullet gets its own bg/border */
+.student-status-secondary .student-status-icon-container {
   background-color: var(--color-badge-on-track-bg);
   border: 1px solid var(--color-badge-on-track-stroke);
-  border-radius: var(--radius-sm);
-  z-index: 1;
+  border-radius: 8px;
+  padding: 2px;
 }
 
+/* Text — Primary */
 .student-status-text-primary {
   font-family: var(--font-complementary);
   font-weight: 400;
@@ -94,19 +110,13 @@
   z-index: 2;
 }
 
-/* Secondary Variant */
-.student-status-secondary .student-status-text {
-  position: relative;
-  z-index: 2;
-}
-
+/* Text — Secondary */
 .student-status-text-secondary {
   font-family: var(--font-complementary);
   font-weight: 400;
   line-height: 1.4;
   color: var(--color-badge-on-track);
   font-size: var(--text-size-3);
-  text-align: center;
   white-space: nowrap;
   position: relative;
   z-index: 2;
