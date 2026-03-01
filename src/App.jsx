@@ -21,6 +21,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<Navigate to="/" replace />} />
           <Route path="/login/teacher" element={<TeacherLoginPage />} />
           <Route 
             path="/home" 

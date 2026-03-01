@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { School, User } from 'lucide-react';
 import LudoraLogo from '../../components/atoms/LudoraLogo/LudoraLogo';
@@ -7,11 +6,8 @@ import './LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [selectedRole, setSelectedRole] = useState(null);
 
   const handleRoleSelect = (role) => {
-    setSelectedRole(role);
-    // Navigate to the appropriate login form based on role
     if (role === 'teacher') {
       navigate('/login/teacher');
     } else if (role === 'parent') {
@@ -22,38 +18,41 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <LudoraLogo />
-      
+
       <div className="login-page__container">
         <div className="login-page__content">
-          <div className="login-page__header">
+          <header className="login-page__header">
             <h1 className="login-page__title">Portail Connexion</h1>
             <div className="login-page__badge">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <rect width="16" height="16" rx="3" fill="rgba(165, 163, 168, 0.3)"/>
-              </svg>
-              <span className="login-page__badge-text">Ecole de Gratte Ciel #0711</span>
+              <span className="login-page__badge-text">Ecole de la Région #1254</span>
             </div>
-            <div className="login-page__divider"></div>
-          </div>
+            <div className="login-page__divider" aria-hidden="true" />
+          </header>
 
-          <div className="login-page__roles">
-            <div className="login-page__cards">
-              <RoleCard 
-                title="Je suis un enseignant"
-                icon={<School size={80} color="#f7f7f8" />}
-                onClick={() => handleRoleSelect('teacher')}
-              />
-              <RoleCard 
-                title="Je suis un parent"
-                icon={<User size={80} color="#f7f7f8" />}
-                onClick={() => handleRoleSelect('parent')}
-              />
+          <section className="login-page__roles">
+            <div className="login-page__role-options">
+              <div className="login-page__role-option">
+                <span className="login-page__role-label">Enseignant</span>
+                <RoleCard
+                  title="Enseignant"
+                  icon={<School size={48} strokeWidth={1.5} />}
+                  onClick={() => handleRoleSelect('teacher')}
+                />
+              </div>
+              <div className="login-page__role-option">
+                <span className="login-page__role-label">Parent</span>
+                <RoleCard
+                  title="Parent"
+                  icon={<User size={48} strokeWidth={1.5} />}
+                  onClick={() => handleRoleSelect('parent')}
+                />
+              </div>
             </div>
 
             <a href="/register" className="login-page__register-link">
-              Vous n'avez pas encore de compte ?
+              Vous n&apos;avez pas encore de compte ?
             </a>
-          </div>
+          </section>
         </div>
       </div>
     </div>
