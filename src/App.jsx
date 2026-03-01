@@ -13,6 +13,7 @@ import StudentDetailPage from './pages/StudentDetailPage';
 import ActivityDetailPage from './pages/ActivityDetailPage';
 import UICheckerPage from './pages/UICheckerPage/UICheckerPage';
 import ComponentDetailPage from './pages/ComponentDetailPage/ComponentDetailPage';
+import BusinessPlanPage from './pages/BusinessPlanPage/BusinessPlanPage';
 import './App.css';
 
 function App() {
@@ -80,6 +81,14 @@ function App() {
             element={
               <PrivateRoute>
                 <AdministrationPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/business-plan" 
+            element={
+              <PrivateRoute>
+                <BusinessPlanPage />
               </PrivateRoute>
             } 
           />

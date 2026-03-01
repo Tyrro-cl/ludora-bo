@@ -13,7 +13,7 @@ const DEFAULT_USER = {
   avatarUrl: DEFAULT_AVATAR,
 };
 
-const DEFAULT_NAV_GROUPS = [
+export const DEFAULT_NAV_GROUPS = [
   {
     id: 'home',
     label: 'Accueil',
@@ -70,6 +70,19 @@ const DEFAULT_NAV_GROUPS = [
       { id: 'sent', label: 'Envoyés', icon: 'Send' },
       { id: 'parentMessages', label: 'Messages parents', icon: 'MessageCircle', counter: 12, counterVariant: 'default' },
       { id: 'archived', label: 'Archivés', icon: 'Archive' },
+    ],
+  },
+  {
+    id: 'businessPlan',
+    label: 'Business Plan',
+    icon: 'FileText',
+    expanded: true,
+    items: [
+      { id: 'bpOverview', label: 'Vue d\'ensemble', icon: 'LayoutGrid' },
+      { id: 'bpFinancement', label: 'Plan de financement', icon: 'Landmark' },
+      { id: 'bpResultat', label: 'Compte de résultat', icon: 'Receipt' },
+      { id: 'bpTresorerie', label: 'Trésorerie', icon: 'Wallet' },
+      { id: 'bpPilotage', label: 'Pilotage & KPIs', icon: 'Gauge' },
     ],
   },
   {
